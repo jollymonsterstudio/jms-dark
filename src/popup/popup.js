@@ -1,0 +1,130 @@
+(() => {
+  "use strict";
+  const api = globalThis.browser ?? globalThis.chrome;
+  const MODE_KEY = "mode";
+  const SITES_KEY = "sites";
+
+  const $ = (id) => document.getElementById(id);
+  const radios = document.querySelectorAll('input[name="mode"]');
+  const patternFor = (origin) => `${origin}/*`;
+
+  let tab = null; // { id, origin } of the active http(s) tab, if any
+
+  function showError(msg) {
+    $("error").hidden = !msg;
+    $("error").textContent = msg ?? "";
+  }
+
+  async function getSites() {
+    const data = await api.storage.local.get(SITES_KEY);
+    return Array.isArray(data[SITES_KEY]) ? data[SITES_KEY] : [];
+  }
+
+  async function setSites(sites) {
+    await api.storage.local.set({ [SITES_KEY]: sites });
+    await api.runtime.sendMessage({ type: "sync" });
+  }
+
+  async function detectTab() {
+    const [active] = await api.tabs.query({ active: true, currentWindow: true });
+    if (!active?.url) return null;
+    let url;
+    try {
+      url = new URL(active.url);
+    } catch {
+      return null;
+    }
+    if (url.protocol !== "https:" && url.protocol !== "http:") return null;
+    return { id: active.id, origin: url.origin };
+  }
+
+  async function enableCurrent() {
+    showError(null);
+    // Firefox may close the popup while the permission prompt is open, so the
+    // background script finishes the job (save site, register, theme the tab)
+    // when the grant arrives. Tell it what we're asking for first — without
+    // awaiting, because permissions.request must run inside the click gesture.
+    api.runtime.sendMessage({ type: "pending", origin: tab.origin, tabId: tab.id });
+    const granted = await api.permissions.request({ origins: [patternFor(tab.origin)] });
+    if (!granted) {
+      showError("Permission was not granted, so the theme can't run on this site.");
+      return;
+    }
+    // Popup survived: make sure it's applied (idempotent with the background path).
+    await api.runtime.sendMessage({ type: "granted", origin: tab.origin, tabId: tab.id });
+    await render();
+  }
+
+  async function removeSite(origin) {
+    showError(null);
+    await setSites((await getSites()).filter((s) => s !== origin));
+    try {
+      await api.permissions.remove({ origins: [patternFor(origin)] });
+    } catch {
+      // already gone
+    }
+    if (tab?.origin === origin) await api.runtime.sendMessage({ type: "uninject", tabId: tab.id });
+    await render();
+  }
+
+  async function render() {
+    const sites = await getSites();
+
+    // Current site panel
+    const btn = $("site-btn");
+    btn.hidden = true;
+    btn.onclick = null;
+    if (!tab) {
+      $("site").textContent = "Not a web page";
+      $("site-hint").textContent = "Open your Jira or Confluence tab, then click the icon again.";
+    } else {
+      $("site").textContent = tab.origin;
+      const enabled = sites.includes(tab.origin);
+      const permitted = enabled && (await api.permissions.contains({ origins: [patternFor(tab.origin)] }));
+      if (enabled && permitted) {
+        $("site-hint").textContent = "Enabled on this site.";
+      } else {
+        $("site-hint").textContent = enabled
+          ? "Site is saved but its permission was revoked."
+          : "Firefox will ask for access to this site only.";
+        btn.textContent = enabled ? "Grant access" : "Enable on this site";
+        btn.hidden = false;
+        btn.onclick = () => enableCurrent().catch((e) => showError(String(e?.message ?? e)));
+      }
+    }
+
+    // Enabled sites list
+    const list = $("sites");
+    list.replaceChildren();
+    $("no-sites").hidden = sites.length > 0;
+    for (const origin of sites) {
+      const li = document.createElement("li");
+      const name = document.createElement("span");
+      name.textContent = origin.replace(/^https:\/\//, "");
+      name.title = origin;
+      const rm = document.createElement("button");
+      rm.type = "button";
+      rm.className = "link";
+      rm.textContent = "Remove";
+      rm.addEventListener("click", () => removeSite(origin).catch((e) => showError(String(e?.message ?? e))));
+      li.append(name, rm);
+      list.appendChild(li);
+    }
+  }
+
+  // Theme mode
+  api.storage.local.get(MODE_KEY).then((data) => {
+    const mode = data?.[MODE_KEY] ?? "on";
+    radios.forEach((r) => { r.checked = r.value === mode; });
+  });
+  radios.forEach((r) =>
+    r.addEventListener("change", () => {
+      if (r.checked) api.storage.local.set({ [MODE_KEY]: r.value });
+    })
+  );
+
+  $("ver").textContent = `v${api.runtime.getManifest().version}`;
+  detectTab()
+    .then((t) => { tab = t; })
+    .finally(() => render().catch((e) => showError(String(e?.message ?? e))));
+})();

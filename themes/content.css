@@ -1,0 +1,186 @@
+/*
+ * JMS Dark — rendered wiki markup.
+ * Jira and Confluence share the same renderer output: confluenceTable,
+ * panel/code/noformat macros, info/note/tip/warning boxes, syntaxhighlighter.
+ */
+
+/* ===================== Body text ===================== */
+
+html.jd-on .wiki-content,
+html.jd-on .user-content-block,
+html.jd-on .action-body,
+html.jd-on .wiki-edit-content {
+  color: var(--jd-text) !important;
+}
+html.jd-on .wiki-content h1, html.jd-on .wiki-content h2, html.jd-on .wiki-content h3,
+html.jd-on .wiki-content h4, html.jd-on .wiki-content h5, html.jd-on .wiki-content h6,
+html.jd-on .user-content-block h1, html.jd-on .user-content-block h2, html.jd-on .user-content-block h3,
+html.jd-on .user-content-block h4, html.jd-on .user-content-block h5, html.jd-on .user-content-block h6 {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .wiki-content blockquote,
+html.jd-on .user-content-block blockquote {
+  border-left-color: var(--jd-border-hi) !important;
+  color: var(--jd-text-dim) !important;
+}
+
+/* Inline monospace {{text}} */
+html.jd-on .wiki-content code,
+html.jd-on .wiki-content tt,
+html.jd-on .user-content-block code,
+html.jd-on .user-content-block tt,
+html.jd-on .action-body tt,
+html.jd-on .action-body code {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-orange) !important;
+  border-radius: 3px;
+  padding: 0 3px;
+}
+
+/* ===================== Tables ===================== */
+
+html.jd-on table.confluenceTable,
+html.jd-on div.table-wrap {
+  background-color: transparent !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on table.confluenceTable td,
+html.jd-on table.confluenceTable th,
+html.jd-on td.confluenceTd,
+html.jd-on th.confluenceTh {
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on td.confluenceTd {
+  background-color: transparent;
+}
+html.jd-on th.confluenceTh,
+html.jd-on td.confluenceTd.highlight,
+html.jd-on th.confluenceTh.highlight,
+html.jd-on .highlight-grey,
+html.jd-on .confluenceTable .tablesorter-header,
+html.jd-on .confluenceTable .sortableHeader {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-text-hi) !important;
+}
+/* Coloured cell highlights → dark tints of the same hue */
+html.jd-on .highlight-blue,   html.jd-on [data-highlight-colour="blue"]   { background-color: #263447 !important; }
+html.jd-on .highlight-green,  html.jd-on [data-highlight-colour="green"]  { background-color: #26382a !important; }
+html.jd-on .highlight-yellow, html.jd-on [data-highlight-colour="yellow"] { background-color: #3d3725 !important; }
+html.jd-on .highlight-red,    html.jd-on [data-highlight-colour="red"]    { background-color: #42292d !important; }
+html.jd-on .highlight-purple, html.jd-on [data-highlight-colour="purple"] { background-color: #372b42 !important; }
+html.jd-on .highlight-teal,   html.jd-on [data-highlight-colour="teal"]   { background-color: #233a3c !important; }
+
+/* ===================== Information macros ===================== */
+
+html.jd-on .confluence-information-macro,
+html.jd-on .aui-message.confluence-information-macro {
+  background-color: var(--jd-surface) !important;
+  border: 1px solid var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on .confluence-information-macro-information { border-left: 3px solid var(--jd-blue) !important; }
+html.jd-on .confluence-information-macro-tip         { border-left: 3px solid var(--jd-green) !important; }
+html.jd-on .confluence-information-macro-note        { border-left: 3px solid var(--jd-yellow) !important; }
+html.jd-on .confluence-information-macro-warning     { border-left: 3px solid var(--jd-red) !important; }
+html.jd-on .confluence-information-macro-body,
+html.jd-on .confluence-information-macro-body p,
+html.jd-on .confluence-information-macro-body li {
+  color: var(--jd-text) !important;
+}
+html.jd-on .confluence-information-macro .title {
+  color: var(--jd-text-hi) !important;
+}
+
+/* ===================== Panel / noformat / code ===================== */
+
+html.jd-on .panel,
+html.jd-on .panelContent,
+html.jd-on .preformatted,
+html.jd-on .preformattedContent,
+html.jd-on .code.panel,
+html.jd-on .codeContent,
+html.jd-on div.code,
+html.jd-on .expand-container .expand-content {
+  background-color: var(--jd-bg-deep) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on .panelHeader,
+html.jd-on .codeHeader {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .wiki-content pre,
+html.jd-on .user-content-block pre,
+html.jd-on .action-body pre,
+html.jd-on .preformattedContent pre,
+html.jd-on .codeContent pre {
+  background-color: transparent !important;
+  color: var(--jd-text) !important;
+}
+
+/* SyntaxHighlighter (code macro) */
+html.jd-on .syntaxhighlighter,
+html.jd-on .syntaxhighlighter table,
+html.jd-on .syntaxhighlighter table td,
+html.jd-on .syntaxhighlighter .line,
+html.jd-on .syntaxhighlighter .line.alt1,
+html.jd-on .syntaxhighlighter .line.alt2,
+html.jd-on .syntaxhighlighter .container,
+html.jd-on .syntaxhighlighter-pre {
+  background-color: var(--jd-bg-deep) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on .syntaxhighlighter .line.highlighted { background-color: var(--jd-select) !important; }
+html.jd-on .syntaxhighlighter .gutter,
+html.jd-on .syntaxhighlighter .gutter .line {
+  background-color: var(--jd-bg-alt) !important;
+  color: var(--jd-text-faint) !important;
+  border-right-color: var(--jd-border) !important;
+}
+html.jd-on .syntaxhighlighter .plain,
+html.jd-on .syntaxhighlighter .plain a     { color: var(--jd-text) !important; }
+html.jd-on .syntaxhighlighter .comments,
+html.jd-on .syntaxhighlighter .comments a  { color: var(--jd-text-faint) !important; font-style: italic; }
+html.jd-on .syntaxhighlighter .string,
+html.jd-on .syntaxhighlighter .string a    { color: var(--jd-green) !important; }
+html.jd-on .syntaxhighlighter .keyword     { color: var(--jd-purple) !important; }
+html.jd-on .syntaxhighlighter .value,
+html.jd-on .syntaxhighlighter .constants   { color: var(--jd-orange) !important; }
+html.jd-on .syntaxhighlighter .variable,
+html.jd-on .syntaxhighlighter .functions   { color: var(--jd-blue) !important; }
+html.jd-on .syntaxhighlighter .preprocessor,
+html.jd-on .syntaxhighlighter .color1      { color: var(--jd-cyan) !important; }
+html.jd-on .syntaxhighlighter .color2      { color: var(--jd-red) !important; }
+html.jd-on .syntaxhighlighter .color3      { color: var(--jd-yellow) !important; }
+html.jd-on .syntaxhighlighter .script      { color: var(--jd-text-hi) !important; }
+html.jd-on .syntaxhighlighter .toolbar     { background: var(--jd-surface) !important; }
+
+/* Jira legacy {code} renderer */
+html.jd-on .code-keyword  { color: var(--jd-purple) !important; }
+html.jd-on .code-quote    { color: var(--jd-green) !important; }
+html.jd-on .code-comment  { color: var(--jd-text-faint) !important; }
+html.jd-on .code-object   { color: var(--jd-blue) !important; }
+html.jd-on .code-tag      { color: var(--jd-red) !important; }
+
+/* ===================== Status macro, expand, TOC ===================== */
+
+html.jd-on .expand-control,
+html.jd-on .expand-control-text {
+  color: var(--jd-blue) !important;
+}
+html.jd-on .toc-macro a {
+  color: var(--jd-blue) !important;
+}
+
+/* ===================== Images ===================== */
+/* Transparent PNG/SVG diagrams are usually drawn for a white page. */
+html.jd-on .wiki-content img.confluence-embedded-image,
+html.jd-on .user-content-block img:not(.emoticon):not([src*="/images/icons/"]) {
+  background-color: #ffffff;
+}
+html.jd-on img.emoticon {
+  background: transparent !important;
+}

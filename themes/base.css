@@ -1,0 +1,580 @@
+/*
+ * JMS Dark — base layer shared by Jira and Confluence.
+ * Palette: One Dark (MIT). Every rule is scoped to html.jd-on so the
+ * content script can switch the whole theme with a single class.
+ *
+ * Layers:   base.css        palette, page chrome, AUI components, forms
+ *           content.css     rendered wiki markup (tables, macros, code)
+ *           jira.css        Jira-only screens       (scoped to body#jira)
+ *           confluence.css  Confluence-only screens (scoped to body#com-atlassian-confluence)
+ */
+
+html.jd-on {
+  --jd-bg: #282c34;          /* page */
+  --jd-bg-alt: #21252b;      /* sidebars, headers, menus */
+  --jd-bg-deep: #1b1d23;     /* code, sunken wells, top bar */
+  --jd-surface: #2c313a;     /* cards, table headers, panels */
+  --jd-hover: #353b45;
+  --jd-select: #3a4a66;      /* selected rows / cards */
+  --jd-border: #3e4451;
+  --jd-border-hi: #4b5263;
+
+  --jd-text: #abb2bf;
+  --jd-text-dim: #8b929e;
+  --jd-text-faint: #5c6370;
+  --jd-text-hi: #dcdfe4;
+
+  --jd-blue: #61afef;
+  --jd-blue-hi: #8cc4f5;
+  --jd-accent: #3d6fd1;      /* primary buttons */
+  --jd-accent-hi: #4f80df;
+  --jd-green: #98c379;
+  --jd-yellow: #e5c07b;
+  --jd-red: #e06c75;
+  --jd-purple: #c678dd;
+  --jd-cyan: #56b6c2;
+  --jd-orange: #d19a66;
+
+  color-scheme: dark;
+  scrollbar-color: var(--jd-border-hi) var(--jd-bg-alt);
+  background-color: var(--jd-bg) !important;
+}
+
+html.jd-on ::selection { background: var(--jd-select); color: var(--jd-text-hi); }
+
+/* ===================== Page chrome ===================== */
+
+html.jd-on body,
+html.jd-on #page,
+html.jd-on #content,
+html.jd-on .aui-page-panel,
+html.jd-on .aui-page-panel-inner,
+html.jd-on .aui-page-panel-content,
+html.jd-on .aui-page-header,
+html.jd-on .aui-page-header-inner,
+html.jd-on #footer,
+html.jd-on .footer-body {
+  background-color: var(--jd-bg) !important;
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border) !important;
+}
+
+html.jd-on .aui-page-panel-nav,
+html.jd-on .aui-page-panel-sidebar,
+html.jd-on .aui-sidebar,
+html.jd-on .aui-sidebar-wrapper,
+html.jd-on .aui-sidebar-body,
+html.jd-on .aui-sidebar-footer {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+
+/* Top application header */
+html.jd-on #header .aui-header,
+html.jd-on .aui-header {
+  background-color: var(--jd-bg-deep) !important;
+  border-bottom: 1px solid var(--jd-border) !important;
+}
+html.jd-on .aui-header .aui-nav > li > a,
+html.jd-on .aui-header .aui-nav > li > button,
+html.jd-on .aui-header .aui-dropdown2-trigger {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .aui-header .aui-nav > li > a:hover,
+html.jd-on .aui-header .aui-nav > li > a:focus,
+html.jd-on .aui-header .aui-dropdown2-trigger:hover,
+html.jd-on .aui-header .aui-dropdown2-trigger[aria-expanded="true"] {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on .aui-header .aui-quicksearch input,
+html.jd-on #quickSearchInput,
+html.jd-on #quick-search-query {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-text-hi) !important;
+  border-color: var(--jd-border) !important;
+}
+
+/* ===================== Typography ===================== */
+
+html.jd-on p,
+html.jd-on li,
+html.jd-on dd,
+html.jd-on dt,
+html.jd-on td,
+html.jd-on th,
+html.jd-on label,
+html.jd-on legend,
+html.jd-on caption {
+  color: var(--jd-text);
+}
+html.jd-on h1, html.jd-on h2, html.jd-on h3,
+html.jd-on h4, html.jd-on h5, html.jd-on h6,
+html.jd-on .aui-page-header-main h1,
+html.jd-on .aui-page-header-main h2 {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on a,
+html.jd-on a:link,
+html.jd-on a:visited {
+  color: var(--jd-blue);
+}
+html.jd-on a:hover,
+html.jd-on a:focus {
+  color: var(--jd-blue-hi);
+}
+html.jd-on .description,
+html.jd-on .secondary-text,
+html.jd-on .subText,
+html.jd-on small,
+html.jd-on .aui-page-header-actions,
+html.jd-on .smalltext,
+html.jd-on .date,
+html.jd-on .muted,
+html.jd-on .field-group .description {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on hr {
+  border-color: var(--jd-border) !important;
+  background-color: var(--jd-border) !important;
+}
+html.jd-on kbd {
+  background: var(--jd-surface) !important;
+  color: var(--jd-text-hi) !important;
+  border-color: var(--jd-border-hi) !important;
+  box-shadow: none !important;
+}
+
+/* ===================== Forms ===================== */
+
+html.jd-on input[type="text"],
+html.jd-on input[type="search"],
+html.jd-on input[type="email"],
+html.jd-on input[type="url"],
+html.jd-on input[type="password"],
+html.jd-on input[type="number"],
+html.jd-on input[type="date"],
+html.jd-on input[type="tel"],
+html.jd-on input:not([type]),
+html.jd-on textarea,
+html.jd-on select,
+html.jd-on .aui .text,
+html.jd-on .aui .textarea,
+html.jd-on .aui .select,
+html.jd-on .aui .multi-select,
+html.jd-on form.aui .text,
+html.jd-on form.aui .textarea,
+html.jd-on form.aui .select,
+html.jd-on .text.long-field,
+html.jd-on .select2-container .select2-choice,
+html.jd-on .select2-container-multi .select2-choices,
+html.jd-on .select2-search input,
+html.jd-on .jira-multi-select,
+html.jd-on .multi-select .representation,
+html.jd-on .representation .items,
+html.jd-on .aui-ss-field,
+html.jd-on .aui-field-text {
+  background-color: var(--jd-bg-deep) !important;
+  color: var(--jd-text-hi) !important;
+  border-color: var(--jd-border-hi) !important;
+}
+html.jd-on input:focus,
+html.jd-on textarea:focus,
+html.jd-on select:focus,
+html.jd-on .aui .text:focus,
+html.jd-on .aui .textarea:focus {
+  border-color: var(--jd-blue) !important;
+  outline-color: var(--jd-blue) !important;
+}
+html.jd-on input::placeholder,
+html.jd-on textarea::placeholder {
+  color: var(--jd-text-faint) !important;
+}
+html.jd-on input:disabled,
+html.jd-on textarea:disabled,
+html.jd-on select:disabled,
+html.jd-on .aui .text[disabled] {
+  background-color: var(--jd-bg-alt) !important;
+  color: var(--jd-text-faint) !important;
+}
+html.jd-on option,
+html.jd-on optgroup {
+  background-color: var(--jd-bg-alt);
+  color: var(--jd-text);
+}
+html.jd-on input[type="checkbox"],
+html.jd-on input[type="radio"] {
+  accent-color: var(--jd-blue);
+}
+html.jd-on fieldset {
+  border-color: var(--jd-border) !important;
+}
+
+/* ===================== Buttons ===================== */
+
+html.jd-on .aui-button,
+html.jd-on a.aui-button,
+html.jd-on button.aui-button,
+html.jd-on .aui-button:visited,
+html.jd-on input.button,
+html.jd-on input[type="button"],
+html.jd-on input[type="submit"]:not(.aui-button-primary),
+html.jd-on .ajs-button {
+  background: var(--jd-surface) !important;
+  color: var(--jd-text-hi) !important;
+  border-color: var(--jd-border-hi) !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+html.jd-on .aui-button:hover,
+html.jd-on .aui-button:focus,
+html.jd-on .aui-button.active,
+html.jd-on .aui-button[aria-pressed="true"],
+html.jd-on .aui-button[aria-expanded="true"] {
+  background: var(--jd-hover) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .aui-button.aui-button-primary,
+html.jd-on .aui-button-primary,
+html.jd-on input[type="submit"].aui-button-primary {
+  background: var(--jd-accent) !important;
+  border-color: var(--jd-accent) !important;
+  color: #ffffff !important;
+}
+html.jd-on .aui-button.aui-button-primary:hover,
+html.jd-on .aui-button-primary:hover {
+  background: var(--jd-accent-hi) !important;
+}
+html.jd-on .aui-button.aui-button-subtle,
+html.jd-on .aui-button.aui-button-link,
+html.jd-on .aui-button-subtle,
+html.jd-on .aui-button-link {
+  background: transparent !important;
+  border-color: transparent !important;
+}
+html.jd-on .aui-button.aui-button-subtle:hover,
+html.jd-on .aui-button-subtle:hover {
+  background: var(--jd-hover) !important;
+}
+html.jd-on .aui-button-link,
+html.jd-on .aui-button.aui-button-link {
+  color: var(--jd-blue) !important;
+}
+html.jd-on .aui-buttons .aui-button {
+  border-color: var(--jd-border-hi) !important;
+}
+html.jd-on .aui-button[disabled],
+html.jd-on .aui-button[aria-disabled="true"] {
+  opacity: 0.5;
+}
+
+/* ===================== Menus, dropdowns, popups ===================== */
+
+html.jd-on .aui-dropdown2,
+html.jd-on .aui-dropdown2.aui-style-default,
+html.jd-on .aui-dropdown2 .aui-dropdown2-section,
+html.jd-on .ajs-layer,
+html.jd-on .ajs-layer.box-shadow,
+html.jd-on .aui-list,
+html.jd-on .ajs-list,
+html.jd-on .ajs-menu-bar .ajs-drop-down,
+html.jd-on .aui-dd-parent .aui-dropdown,
+html.jd-on .ajs-drop-down,
+html.jd-on .aui-inline-dialog-contents,
+html.jd-on .aui-inline-dialog .contents,
+html.jd-on .aui-popup,
+html.jd-on .ajs-dialog,
+html.jd-on .select2-drop,
+html.jd-on .select2-results,
+html.jd-on .suggestions,
+html.jd-on .ac-results,
+html.jd-on .aui-list-scroll,
+html.jd-on .ui-datepicker,
+html.jd-on .calendar {
+  background-color: var(--jd-bg-alt) !important;
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border-hi) !important;
+}
+html.jd-on .aui-inline-dialog .arrow,
+html.jd-on .aui-inline-dialog .aui-inline-dialog-arrow {
+  filter: brightness(0.25);
+}
+html.jd-on .aui-dropdown2 a,
+html.jd-on .aui-dropdown2 button,
+html.jd-on .aui-dropdown2 .aui-dropdown2-checkbox,
+html.jd-on .aui-dropdown2 .aui-dropdown2-radio,
+html.jd-on .aui-list .aui-list-item-link,
+html.jd-on .ajs-layer a,
+html.jd-on .ajs-list a,
+html.jd-on .select2-results li,
+html.jd-on .ac-results li {
+  color: var(--jd-text) !important;
+  background-color: transparent !important;
+}
+html.jd-on .aui-dropdown2 a:hover,
+html.jd-on .aui-dropdown2 a:focus,
+html.jd-on .aui-dropdown2 .active,
+html.jd-on .aui-dropdown2 .aui-dropdown2-active,
+html.jd-on .aui-dropdown2 button:hover,
+html.jd-on .aui-list .aui-list-item.active > a,
+html.jd-on .aui-list .active,
+html.jd-on .ajs-layer a:hover,
+html.jd-on .ajs-layer li.active > a,
+html.jd-on .select2-results .select2-highlighted,
+html.jd-on .ac-results li.active,
+html.jd-on .ac-results .ac-over {
+  background-color: var(--jd-select) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .aui-dropdown2-heading,
+html.jd-on .aui-dropdown2 .aui-dropdown2-heading strong,
+html.jd-on .aui-list-section h5,
+html.jd-on .aui-list .aui-list-heading {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on .aui-dropdown2-section + .aui-dropdown2-section,
+html.jd-on .aui-list-section + .aui-list-section {
+  border-top-color: var(--jd-border) !important;
+}
+
+/* ===================== Dialogs ===================== */
+
+html.jd-on .aui-dialog2,
+html.jd-on .aui-dialog2-content,
+html.jd-on .aui-dialog2-header,
+html.jd-on .aui-dialog2-footer,
+html.jd-on .aui-dialog,
+html.jd-on .aui-dialog .dialog-components,
+html.jd-on .aui-dialog .dialog-panel-body,
+html.jd-on .aui-dialog .dialog-page-menu,
+html.jd-on .aui-dialog .dialog-button-panel,
+html.jd-on .aui-dialog .dialog-title,
+html.jd-on .jira-dialog,
+html.jd-on .jira-dialog-heading,
+html.jd-on .jira-dialog-content,
+html.jd-on .jira-dialog .form-body,
+html.jd-on .jira-dialog .buttons-container,
+html.jd-on .jira-dialog .form-footer,
+html.jd-on .dialog-components {
+  background-color: var(--jd-bg-alt) !important;
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on .aui-dialog2-header,
+html.jd-on .jira-dialog-heading,
+html.jd-on .aui-dialog .dialog-title {
+  background-color: var(--jd-surface) !important;
+}
+html.jd-on .aui-dialog2-header-main,
+html.jd-on .jira-dialog-heading h2 {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .aui-blanket {
+  background-color: rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ===================== Navigation & tabs ===================== */
+
+html.jd-on .aui-nav-vertical li a,
+html.jd-on .aui-navgroup-vertical .aui-nav > li > a,
+html.jd-on .aui-sidebar .aui-nav > li > a,
+html.jd-on .aui-sidebar .aui-nav-item {
+  color: var(--jd-text) !important;
+}
+html.jd-on .aui-navgroup-vertical .aui-nav > li > a:hover,
+html.jd-on .aui-sidebar .aui-nav > li > a:hover,
+html.jd-on .aui-sidebar .aui-nav-item:hover {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on .aui-navgroup-vertical .aui-nav-selected > a,
+html.jd-on .aui-nav-vertical .aui-nav-selected > a,
+html.jd-on .aui-sidebar .aui-nav-selected > a,
+html.jd-on .aui-sidebar [aria-current="page"] {
+  background-color: var(--jd-select) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .aui-nav-heading,
+html.jd-on .aui-sidebar .aui-nav-heading {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on .aui-navgroup-horizontal,
+html.jd-on .aui-navgroup-horizontal .aui-navgroup-inner {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+}
+
+html.jd-on .aui-tabs > .tabs-menu,
+html.jd-on .tabs-menu {
+  border-color: var(--jd-border) !important;
+}
+html.jd-on .aui-tabs > .tabs-menu .menu-item a,
+html.jd-on .tabs-menu .menu-item a,
+html.jd-on .aui-tabs > .tabs-menu .menu-item > a {
+  background-color: transparent !important;
+  color: var(--jd-text-dim) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on .aui-tabs > .tabs-menu .menu-item.active-tab a,
+html.jd-on .tabs-menu .menu-item.active-tab a,
+html.jd-on .tabs-menu li.active a {
+  background-color: var(--jd-bg) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .aui-tabs.horizontal-tabs > .tabs-menu .menu-item.active-tab a::after {
+  background: var(--jd-blue) !important;
+}
+html.jd-on .aui-tabs > .tabs-pane,
+html.jd-on .tabs-pane {
+  background-color: transparent !important;
+  border-color: var(--jd-border) !important;
+}
+
+html.jd-on .aui-nav-breadcrumbs li,
+html.jd-on .aui-nav-breadcrumbs a {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on .aui-nav-pagination a,
+html.jd-on .pagination a {
+  color: var(--jd-blue) !important;
+}
+
+/* ===================== Tables ===================== */
+
+html.jd-on table.aui,
+html.jd-on table.aui > thead,
+html.jd-on table.aui > tbody,
+html.jd-on table.aui > tfoot {
+  background-color: transparent !important;
+}
+html.jd-on table.aui > thead > tr > th,
+html.jd-on table.aui th,
+html.jd-on table.aui > tbody > tr > td,
+html.jd-on table.aui td {
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on table.aui > thead > tr > th,
+html.jd-on table.aui th {
+  color: var(--jd-text-dim) !important;
+  background-color: transparent !important;
+}
+html.jd-on table.aui.aui-table-interactive > tbody > tr:hover,
+html.jd-on table.aui > tbody > tr:hover > td {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on table.aui.aui-zebra > tbody > tr:nth-child(odd) > td {
+  background-color: var(--jd-bg-alt) !important;
+}
+
+/* ===================== Messages, flags, lozenges, badges ===================== */
+
+html.jd-on .aui-message,
+html.jd-on .aui-message-info,
+html.jd-on .aui-message-generic,
+html.jd-on .aui-message.info,
+html.jd-on .aui-flag .aui-message {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on .aui-message.aui-message-info,
+html.jd-on .aui-message.info       { border-left: 3px solid var(--jd-blue) !important; }
+html.jd-on .aui-message.aui-message-success,
+html.jd-on .aui-message.success,
+html.jd-on .aui-message-success    { background-color: #27332a !important; border-left: 3px solid var(--jd-green) !important; color: var(--jd-text) !important; }
+html.jd-on .aui-message.aui-message-warning,
+html.jd-on .aui-message.warning,
+html.jd-on .aui-message-warning    { background-color: #3a3426 !important; border-left: 3px solid var(--jd-yellow) !important; color: var(--jd-text) !important; }
+html.jd-on .aui-message.aui-message-error,
+html.jd-on .aui-message.error,
+html.jd-on .aui-message-error      { background-color: #3d2a2d !important; border-left: 3px solid var(--jd-red) !important; color: var(--jd-text) !important; }
+html.jd-on .aui-message .title,
+html.jd-on .aui-message strong {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .aui-flag {
+  background: transparent !important;
+}
+
+html.jd-on .aui-lozenge.aui-lozenge-subtle,
+html.jd-on .aui-lozenge-subtle {
+  background-color: transparent !important;
+}
+html.jd-on .aui-lozenge-subtle,
+html.jd-on .aui-lozenge.aui-lozenge-subtle {
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border-hi) !important;
+}
+html.jd-on .aui-lozenge-subtle.aui-lozenge-success,
+html.jd-on .aui-lozenge-subtle.aui-lozenge-complete   { color: var(--jd-green) !important;  border-color: var(--jd-green) !important; }
+html.jd-on .aui-lozenge-subtle.aui-lozenge-current,
+html.jd-on .aui-lozenge-subtle.aui-lozenge-inprogress { color: var(--jd-yellow) !important; border-color: var(--jd-yellow) !important; }
+html.jd-on .aui-lozenge-subtle.aui-lozenge-error,
+html.jd-on .aui-lozenge-subtle.aui-lozenge-removed    { color: var(--jd-red) !important;    border-color: var(--jd-red) !important; }
+html.jd-on .aui-lozenge-subtle.aui-lozenge-new        { color: var(--jd-blue) !important;   border-color: var(--jd-blue) !important; }
+html.jd-on .aui-lozenge-subtle.aui-lozenge-moved      { color: var(--jd-purple) !important; border-color: var(--jd-purple) !important; }
+/* Solid lozenges keep their colour, slightly softened */
+html.jd-on .aui-lozenge:not(.aui-lozenge-subtle) {
+  filter: saturate(0.85) brightness(0.92);
+}
+
+html.jd-on .aui-badge,
+html.jd-on aui-badge {
+  background-color: var(--jd-border-hi) !important;
+  color: var(--jd-text-hi) !important;
+}
+
+/* Plain labels only — coloured epic/label chips (ghx-label-N) keep their colour */
+html.jd-on .aui-label:not([class*="ghx-label"]),
+html.jd-on a.aui-label:not([class*="ghx-label"]),
+html.jd-on .lozenge-label {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border-hi) !important;
+  color: var(--jd-blue) !important;
+}
+
+html.jd-on .aui-progress-indicator,
+html.jd-on .aui-progress-indicator-value {
+  background-color: var(--jd-border) !important;
+}
+html.jd-on .aui-progress-indicator-value {
+  background-color: var(--jd-blue) !important;
+}
+
+/* Tooltips */
+html.jd-on .tipsy-inner,
+html.jd-on .aui-tooltip {
+  background-color: var(--jd-text-hi) !important;
+  color: var(--jd-bg-deep) !important;
+}
+
+/* ===================== Inline white backgrounds ===================== */
+/* Plugins and gadgets often hard-code white in style="". */
+
+html.jd-on [style*="background-color: rgb(255, 255, 255)"],
+html.jd-on [style*="background-color:#fff"],
+html.jd-on [style*="background-color: #fff"],
+html.jd-on [style*="background-color:#FFF"],
+html.jd-on [style*="background-color: #FFF"],
+html.jd-on [style*="background-color:white"],
+html.jd-on [style*="background-color: white"],
+html.jd-on [style*="background: rgb(255, 255, 255)"],
+html.jd-on [style*="background:#fff"],
+html.jd-on [style*="background: #fff"],
+html.jd-on [style*="background: white"],
+html.jd-on [style*="background:white"] {
+  background-color: var(--jd-bg) !important;
+}
+
+/* ===================== Quotes & gadget iframes ===================== */
+
+html.jd-on blockquote {
+  background-color: var(--jd-surface) !important;
+  border-left-color: var(--jd-border-hi) !important;
+  color: var(--jd-text) !important;
+}
+/* Jira gadget iframes (Activity Stream etc.) have an id-less <body> and ship
+   their own light link colours; force the theme's link colour there. */
+html.jd-on body:not([id]) a:not(.aui-button) {
+  color: var(--jd-blue) !important;
+}

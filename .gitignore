@@ -1,0 +1,5 @@
+node_modules/
+.web-ext-*
+dist/
+.amo-upload-uuid
+*.xpi

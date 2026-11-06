@@ -1,0 +1,350 @@
+/*
+ * JMS Dark — Confluence 7.x screens. Scoped to body#com-atlassian-confluence.
+ */
+
+/* ===================== Layout ===================== */
+
+html.jd-on #com-atlassian-confluence #full-height-container,
+html.jd-on #com-atlassian-confluence #main,
+html.jd-on #com-atlassian-confluence #main-content,
+html.jd-on #com-atlassian-confluence #main-header,
+html.jd-on #com-atlassian-confluence #content,
+html.jd-on #com-atlassian-confluence #content-body,
+html.jd-on #com-atlassian-confluence .ia-splitter,
+html.jd-on #com-atlassian-confluence .ia-splitter-right,
+html.jd-on #com-atlassian-confluence #page-metadata-banner,
+html.jd-on #com-atlassian-confluence .page-metadata,
+html.jd-on #com-atlassian-confluence #breadcrumb-section,
+html.jd-on #com-atlassian-confluence #navigation,
+html.jd-on #com-atlassian-confluence #footer,
+html.jd-on #com-atlassian-confluence #footer .footer-body {
+  background-color: var(--jd-bg) !important;
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #com-atlassian-confluence #header,
+html.jd-on #com-atlassian-confluence #header-precursor {
+  background-color: var(--jd-bg-deep) !important;
+}
+
+/* ===================== Space sidebar & page tree ===================== */
+
+html.jd-on #com-atlassian-confluence .ia-splitter-left,
+html.jd-on #com-atlassian-confluence .ia-fixed-sidebar,
+html.jd-on #com-atlassian-confluence .acs-side-bar,
+html.jd-on #com-atlassian-confluence .acs-side-bar-content,
+html.jd-on #com-atlassian-confluence .acs-side-bar-space-info,
+html.jd-on #com-atlassian-confluence .ia-secondary-container,
+html.jd-on #com-atlassian-confluence .ia-secondary-header,
+html.jd-on #com-atlassian-confluence .ia-secondary-content,
+html.jd-on #com-atlassian-confluence .ia-splitter-handle,
+html.jd-on #com-atlassian-confluence .space-tools-section,
+html.jd-on #com-atlassian-confluence .acs-nav-sections,
+html.jd-on #com-atlassian-confluence .acs-tree-item {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .ia-splitter-handle-highlight {
+  background-color: var(--jd-blue) !important;
+}
+html.jd-on #com-atlassian-confluence .acs-nav-item-label,
+html.jd-on #com-atlassian-confluence .acs-nav-item-link,
+html.jd-on #com-atlassian-confluence .ia-secondary-header-title,
+html.jd-on #com-atlassian-confluence .ia-secondary-header-title .label,
+html.jd-on #com-atlassian-confluence .acs-side-bar-space-info .space-name,
+html.jd-on #com-atlassian-confluence .plugin_pagetree_children_content a,
+html.jd-on #com-atlassian-confluence .ia-secondary-container .item a {
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .acs-nav-item-link:hover,
+html.jd-on #com-atlassian-confluence .plugin_pagetree_children_span:hover,
+html.jd-on #com-atlassian-confluence .ia-secondary-container .item a:hover {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on #com-atlassian-confluence .acs-nav-item.current-item .acs-nav-item-link,
+html.jd-on #com-atlassian-confluence .plugin_pagetree_current,
+html.jd-on #com-atlassian-confluence .plugin_pagetree_current a,
+html.jd-on #com-atlassian-confluence .ia-secondary-container .item.current-item a {
+  background-color: var(--jd-select) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #com-atlassian-confluence .ia-secondary-container .acs-side-bar-flyout-wrapper,
+html.jd-on #com-atlassian-confluence .ia-secondary-header .more-children-link {
+  color: var(--jd-text-dim) !important;
+}
+
+/* ===================== Page header & metadata ===================== */
+
+html.jd-on #com-atlassian-confluence #title-text,
+html.jd-on #com-atlassian-confluence #title-text a,
+html.jd-on #com-atlassian-confluence #title-heading,
+html.jd-on #com-atlassian-confluence .pagetitle {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #com-atlassian-confluence .page-metadata,
+html.jd-on #com-atlassian-confluence .page-metadata a,
+html.jd-on #com-atlassian-confluence .page-metadata-modification-info,
+html.jd-on #com-atlassian-confluence #breadcrumbs a,
+html.jd-on #com-atlassian-confluence #breadcrumbs li,
+html.jd-on #com-atlassian-confluence .author,
+html.jd-on #com-atlassian-confluence .last-modified {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #com-atlassian-confluence #navigation .aui-button,
+html.jd-on #com-atlassian-confluence #action-menu-link,
+html.jd-on #com-atlassian-confluence #editPageLink,
+html.jd-on #com-atlassian-confluence #page-favourite,
+html.jd-on #com-atlassian-confluence .watch-menu {
+  color: var(--jd-text) !important;
+}
+
+/* Page body background (wiki-content colours live in content.css) */
+html.jd-on #com-atlassian-confluence #main-content.wiki-content,
+html.jd-on #com-atlassian-confluence .wiki-content {
+  background-color: transparent !important;
+}
+
+/* ===================== Comments, likes, labels ===================== */
+
+html.jd-on #com-atlassian-confluence #likes-and-labels-container,
+html.jd-on #com-atlassian-confluence #likes-section,
+html.jd-on #com-atlassian-confluence #labels-section,
+html.jd-on #com-atlassian-confluence #comments-section,
+html.jd-on #com-atlassian-confluence .comment,
+html.jd-on #com-atlassian-confluence .comment-thread,
+html.jd-on #com-atlassian-confluence .comment-content,
+html.jd-on #com-atlassian-confluence .comment-header,
+html.jd-on #com-atlassian-confluence .comment-actions,
+html.jd-on #com-atlassian-confluence .quick-comment-container,
+html.jd-on #com-atlassian-confluence .quick-comment-form,
+html.jd-on #com-atlassian-confluence .quick-comment-body {
+  background-color: transparent !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .comment.focused,
+html.jd-on #com-atlassian-confluence .comment:target {
+  background-color: var(--jd-bg-alt) !important;
+}
+html.jd-on #com-atlassian-confluence .quick-comment-prompt {
+  background-color: var(--jd-bg-deep) !important;
+  border-color: var(--jd-border-hi) !important;
+  color: var(--jd-text-faint) !important;
+}
+html.jd-on #com-atlassian-confluence .comment-count,
+html.jd-on #com-atlassian-confluence .comment-date a,
+html.jd-on #com-atlassian-confluence .like-summary {
+  color: var(--jd-text-dim) !important;
+}
+
+/* Inline comments panel */
+html.jd-on #com-atlassian-confluence .ic-sidebar,
+html.jd-on #com-atlassian-confluence .ic-display-comment-view,
+html.jd-on #com-atlassian-confluence .ic-container,
+html.jd-on #com-atlassian-confluence .ic-content,
+html.jd-on #com-atlassian-confluence .ic-header,
+html.jd-on #com-atlassian-confluence .ic-reply,
+html.jd-on #com-atlassian-confluence .ic-action-bar {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .inline-comment-marker.valid {
+  background-color: rgba(229, 192, 123, 0.18) !important;
+  border-bottom: 2px solid var(--jd-yellow) !important;
+}
+html.jd-on #com-atlassian-confluence .inline-comment-marker.valid.active {
+  background-color: rgba(229, 192, 123, 0.32) !important;
+}
+
+/* ===================== Editor chrome ===================== */
+/* The editable body is themed from content.js (it lives in an iframe). */
+
+html.jd-on #com-atlassian-confluence #rte,
+html.jd-on #com-atlassian-confluence #wysiwyg,
+html.jd-on #com-atlassian-confluence .editor-container,
+html.jd-on #com-atlassian-confluence #rte-toolbar,
+html.jd-on #com-atlassian-confluence #rte-toolbar .aui-toolbar2-inner,
+html.jd-on #com-atlassian-confluence #toolbar,
+html.jd-on #com-atlassian-confluence #editor-precursor,
+html.jd-on #com-atlassian-confluence .editor-precursor,
+html.jd-on #com-atlassian-confluence #editor-notifications-container,
+html.jd-on #com-atlassian-confluence #rte-savebar,
+html.jd-on #com-atlassian-confluence .save-button-container,
+html.jd-on #com-atlassian-confluence #content-title-div,
+html.jd-on #com-atlassian-confluence .content-title,
+html.jd-on #com-atlassian-confluence #content-title,
+html.jd-on #com-atlassian-confluence #draft-status,
+html.jd-on #com-atlassian-confluence .rte-toolbar-group-styles {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #com-atlassian-confluence #content-title,
+html.jd-on #com-atlassian-confluence .content-title {
+  background-color: var(--jd-bg) !important;
+}
+html.jd-on #com-atlassian-confluence #rte-toolbar .aui-button,
+html.jd-on #com-atlassian-confluence #rte-toolbar .toolbar-trigger {
+  background: transparent !important;
+  border-color: transparent !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence #rte-toolbar .aui-button:hover,
+html.jd-on #com-atlassian-confluence #rte-toolbar .aui-button.active,
+html.jd-on #com-atlassian-confluence #rte-toolbar .toolbar-trigger:hover {
+  background: var(--jd-hover) !important;
+}
+html.jd-on #com-atlassian-confluence .macro-browser,
+html.jd-on #com-atlassian-confluence #macro-browser-dialog .dialog-page-body,
+html.jd-on #com-atlassian-confluence .macro-list-item,
+html.jd-on #com-atlassian-confluence .macro-editor,
+html.jd-on #com-atlassian-confluence .macro-preview-container,
+html.jd-on #com-atlassian-confluence #insert-image-dialog .dialog-page-body,
+html.jd-on #com-atlassian-confluence #insert-link-dialog .dialog-page-body,
+html.jd-on #com-atlassian-confluence .autocomplete-macros,
+html.jd-on #com-atlassian-confluence .autocomplete {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .macro-list-item:hover,
+html.jd-on #com-atlassian-confluence .macro-list-item.selected {
+  background-color: var(--jd-select) !important;
+}
+
+/* ===================== Dashboard, space directory, search, people ===================== */
+
+html.jd-on #com-atlassian-confluence .content-header,
+html.jd-on #com-atlassian-confluence .confluence-dashboard,
+html.jd-on #com-atlassian-confluence #dashboard,
+html.jd-on #com-atlassian-confluence .dashboard,
+html.jd-on #com-atlassian-confluence .dashboard-section,
+html.jd-on #com-atlassian-confluence .dashboard-tabs,
+html.jd-on #com-atlassian-confluence .dashboard-content,
+html.jd-on #com-atlassian-confluence .recently-viewed,
+html.jd-on #com-atlassian-confluence .welcome-message,
+html.jd-on #com-atlassian-confluence #space-directory,
+html.jd-on #com-atlassian-confluence .space-directory,
+html.jd-on #com-atlassian-confluence .space-list,
+html.jd-on #com-atlassian-confluence .search-results-container,
+html.jd-on #com-atlassian-confluence .search-results,
+html.jd-on #com-atlassian-confluence .search-result,
+html.jd-on #com-atlassian-confluence #search-filter-container,
+html.jd-on #com-atlassian-confluence .search-filters,
+html.jd-on #com-atlassian-confluence #people-directory,
+html.jd-on #com-atlassian-confluence .profile-macro,
+html.jd-on #com-atlassian-confluence .profile-main,
+html.jd-on #com-atlassian-confluence .vcard,
+html.jd-on #com-atlassian-confluence .stream,
+html.jd-on #com-atlassian-confluence .update-items {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .aui-sidebar,
+html.jd-on #com-atlassian-confluence #dashboard .aui-page-panel-nav,
+html.jd-on #com-atlassian-confluence .search-filters,
+html.jd-on #com-atlassian-confluence #search-filter-container {
+  background-color: var(--jd-bg-alt) !important;
+}
+html.jd-on #com-atlassian-confluence .search-result-title,
+html.jd-on #com-atlassian-confluence .search-result-title a {
+  color: var(--jd-blue) !important;
+}
+html.jd-on #com-atlassian-confluence .search-result-summary,
+html.jd-on #com-atlassian-confluence .search-result-meta,
+html.jd-on #com-atlassian-confluence .search-result-date,
+html.jd-on #com-atlassian-confluence .search-result-space {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #com-atlassian-confluence .search-highlight,
+html.jd-on #com-atlassian-confluence .search-result strong {
+  background: transparent !important;
+  color: var(--jd-yellow) !important;
+}
+
+/* Quick search dropdown */
+html.jd-on #com-atlassian-confluence .quick-search-dropdown,
+html.jd-on #com-atlassian-confluence .quick-nav-drop-down,
+html.jd-on #com-atlassian-confluence .aui-dd-parent .aui-dropdown {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border-hi) !important;
+}
+
+/* ===================== Page history, diff, attachments ===================== */
+
+html.jd-on #com-atlassian-confluence #page-history-container,
+html.jd-on #com-atlassian-confluence .tableview,
+html.jd-on #com-atlassian-confluence table.tableview td,
+html.jd-on #com-atlassian-confluence table.tableview th,
+html.jd-on #com-atlassian-confluence .attachments-table,
+html.jd-on #com-atlassian-confluence .attachments-table td,
+html.jd-on #com-atlassian-confluence .attachments-table th,
+html.jd-on #com-atlassian-confluence .pageSection,
+html.jd-on #com-atlassian-confluence .pageSectionHeader {
+  background-color: transparent !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .diff-html-added,
+html.jd-on #com-atlassian-confluence ins.diff-html-added,
+html.jd-on #com-atlassian-confluence .diff-added-lines {
+  background-color: #2b3d2c !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #com-atlassian-confluence .diff-html-removed,
+html.jd-on #com-atlassian-confluence del.diff-html-removed,
+html.jd-on #com-atlassian-confluence .diff-deleted-lines {
+  background-color: #452b2f !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #com-atlassian-confluence .diff-html-changed {
+  background-color: #3d3725 !important;
+}
+
+/* ===================== Space tools / admin ===================== */
+
+html.jd-on #com-atlassian-confluence .space-tools-content,
+html.jd-on #com-atlassian-confluence .space-tools-navigation,
+html.jd-on #com-atlassian-confluence #admin-body,
+html.jd-on #com-atlassian-confluence .admin-body,
+html.jd-on #com-atlassian-confluence .admin-sidebar,
+html.jd-on #com-atlassian-confluence .grid,
+html.jd-on #com-atlassian-confluence .grid td,
+html.jd-on #com-atlassian-confluence .grid th,
+html.jd-on #com-atlassian-confluence .greybox,
+html.jd-on #com-atlassian-confluence .greyboxfilled,
+html.jd-on #com-atlassian-confluence .tabletitle {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .greyboxfilled,
+html.jd-on #com-atlassian-confluence .tabletitle,
+html.jd-on #com-atlassian-confluence .grid th {
+  background-color: var(--jd-bg-alt) !important;
+}
+
+/* Page restrictions / share dialogs */
+html.jd-on #com-atlassian-confluence #update-page-restrictions-dialog .aui-dialog2-content,
+html.jd-on #com-atlassian-confluence #inline-dialog-shareContentPopup .contents,
+html.jd-on #com-atlassian-confluence .share-content-popup {
+  background-color: var(--jd-bg-alt) !important;
+  color: var(--jd-text) !important;
+}
+
+/* Jira issue macro inside pages */
+html.jd-on #com-atlassian-confluence .jira-issue,
+html.jd-on #com-atlassian-confluence .jira-table,
+html.jd-on #com-atlassian-confluence .jira-table td,
+html.jd-on #com-atlassian-confluence .jira-table th,
+html.jd-on #com-atlassian-confluence .jim-table-wrap {
+  background-color: transparent !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #com-atlassian-confluence .jira-table th {
+  background-color: var(--jd-surface) !important;
+}

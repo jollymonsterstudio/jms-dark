@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>JMS Dark</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>JMS Dark</h1>
+    <p class="sub">Jira &amp; Confluence dark theme</p>
+
+    <section class="box">
+      <div class="legend">This site</div>
+      <p id="site" class="site">—</p>
+      <p id="site-hint" class="hint"></p>
+      <button id="site-btn" type="button" hidden></button>
+    </section>
+
+    <fieldset>
+      <legend>Theme</legend>
+      <label><input type="radio" name="mode" value="on" /> Dark</label>
+      <label><input type="radio" name="mode" value="system" /> Follow system</label>
+      <label><input type="radio" name="mode" value="off" /> Off</label>
+    </fieldset>
+
+    <section class="box">
+      <div class="legend">Enabled sites</div>
+      <ul id="sites"></ul>
+      <p id="no-sites" class="hint">None yet — open your Jira or Confluence and enable it above.</p>
+    </section>
+
+    <p id="error" class="error" hidden></p>
+    <p class="ver" id="ver"></p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

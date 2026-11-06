@@ -1,0 +1,551 @@
+/*
+ * JMS Dark — Jira 8.x screens. Scoped to body#jira.
+ */
+
+/* ===================== Issue view ===================== */
+
+html.jd-on #jira .issue-view,
+html.jd-on #jira #issue-content,
+html.jd-on #jira .issue-body-content,
+html.jd-on #jira .issue-main-column,
+html.jd-on #jira .issue-side-column,
+html.jd-on #jira #viewissuesidebar,
+html.jd-on #jira .issue-header,
+html.jd-on #jira .issue-header-content,
+html.jd-on #jira #stalker,
+html.jd-on #jira #stalker .stalker-placeholder,
+html.jd-on #jira .command-bar,
+html.jd-on #jira .toolbar-split,
+html.jd-on #jira .aui-toolbar,
+html.jd-on #jira .ops-menus,
+html.jd-on #jira .detail-panel,
+html.jd-on #jira .issue-container {
+  background-color: var(--jd-bg) !important;
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #jira #stalker.detached,
+html.jd-on #jira .stalker.detached .issue-header-content {
+  background-color: var(--jd-bg-alt) !important;
+  box-shadow: 0 1px 0 var(--jd-border) !important;
+}
+html.jd-on #jira #summary-val,
+html.jd-on #jira .issue-header h1,
+html.jd-on #jira #key-val {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #jira .aui-nav-breadcrumbs a,
+html.jd-on #jira #key-val {
+  color: var(--jd-blue) !important;
+}
+
+/* Modules (Details, People, Dates, Description, Activity …) */
+html.jd-on #jira .module,
+html.jd-on #jira .module > .mod-header,
+html.jd-on #jira .module > .mod-content,
+html.jd-on #jira .mod-header,
+html.jd-on #jira .mod-content,
+html.jd-on #jira .toggle-wrap {
+  background-color: transparent !important;
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #jira .mod-header .toggle-title,
+html.jd-on #jira .mod-header h2,
+html.jd-on #jira .mod-header h3 {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #jira .property-list .item .name,
+html.jd-on #jira .item-details dt,
+html.jd-on #jira .people-details dt,
+html.jd-on #jira .dates dt {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #jira .property-list .item .value,
+html.jd-on #jira .item-details dd,
+html.jd-on #jira .people-details dd,
+html.jd-on #jira .dates dd {
+  color: var(--jd-text) !important;
+}
+
+/* Inline-edit fields */
+html.jd-on #jira .editable-field:hover,
+html.jd-on #jira .editable-field.active,
+html.jd-on #jira .inline-edit-fields,
+html.jd-on #jira .editable-field .overlay-icon {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border-hi) !important;
+}
+html.jd-on #jira .save-options {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Wiki editor (text mode) and its toolbar */
+html.jd-on #jira .jira-wikifield,
+html.jd-on #jira .wiki-edit,
+html.jd-on #jira .rte-container,
+html.jd-on #jira .jira-editor-container,
+html.jd-on #jira .wiki-button-bar,
+html.jd-on #jira .aui-toolbar2,
+html.jd-on #jira .aui-toolbar2-inner,
+html.jd-on #jira .editor-toggle-tabs,
+html.jd-on #jira .wiki-edit-toolbar,
+html.jd-on #jira .mce-container,
+html.jd-on #jira .mce-panel,
+html.jd-on #jira .mce-toolbar-grp,
+html.jd-on #jira .mce-edit-area {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .wiki-edit-content textarea,
+html.jd-on #jira textarea.wiki-textfield {
+  background-color: var(--jd-bg-deep) !important;
+}
+html.jd-on #jira .rte-container .content-preview,
+html.jd-on #jira .wiki-edit-content .content-inner {
+  background-color: var(--jd-bg) !important;
+}
+
+/* Sub-tasks, issue links, attachments */
+html.jd-on #jira #issuetable,
+html.jd-on #jira .issuetable,
+html.jd-on #jira .links-container,
+html.jd-on #jira .links-list,
+html.jd-on #jira #attachment_thumbnails,
+html.jd-on #jira .attachment-content,
+html.jd-on #jira #file_attachments,
+html.jd-on #jira .issue-drop-zone,
+html.jd-on #jira .issue-drop-zone__target {
+  background-color: transparent !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .links-list dd:hover,
+html.jd-on #jira #issuetable tr:hover > td {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on #jira .attachment-thumb,
+html.jd-on #jira .attachment-thumbnail {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border) !important;
+}
+
+/* ===================== Activity / comments ===================== */
+
+html.jd-on #jira #activitymodule .mod-content,
+html.jd-on #jira .issuePanelContainer,
+html.jd-on #jira .issuePanelWrapper,
+html.jd-on #jira .issue-data-block,
+html.jd-on #jira .activity-comment,
+html.jd-on #jira .actionContainer,
+html.jd-on #jira .action-details,
+html.jd-on #jira .issue-activity-sort-link,
+html.jd-on #jira #addcomment,
+html.jd-on #jira #addcomment .mod-content,
+html.jd-on #jira .comment-form,
+html.jd-on #jira .changehistory,
+html.jd-on #jira .worklog {
+  background-color: transparent !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .activity-comment.focused,
+html.jd-on #jira .issue-data-block.focused,
+html.jd-on #jira .activity-comment:hover {
+  background-color: var(--jd-bg-alt) !important;
+}
+html.jd-on #jira .activity-comment .action-details,
+html.jd-on #jira .action-details .subText,
+html.jd-on #jira .action-details .date,
+html.jd-on #jira .livestamp {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #jira .changehistory .activity-old-val {
+  color: var(--jd-red) !important;
+}
+html.jd-on #jira .changehistory .activity-new-val {
+  color: var(--jd-green) !important;
+}
+html.jd-on #jira .comment-placeholder,
+html.jd-on #jira #footer-comment-button,
+html.jd-on #jira .mod-footer {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+}
+
+/* ===================== Issue navigator / search ===================== */
+
+html.jd-on #jira .navigator-container,
+html.jd-on #jira .navigator-body,
+html.jd-on #jira .navigator-content,
+html.jd-on #jira .navigator-search,
+html.jd-on #jira .navigator-group,
+html.jd-on #jira .search-container,
+html.jd-on #jira .search-criteria-container,
+html.jd-on #jira .saved-search-selector,
+html.jd-on #jira .search-results,
+html.jd-on #jira .results-panel,
+html.jd-on #jira .list-results-panel,
+html.jd-on #jira .list-panel,
+html.jd-on #jira .split-view,
+html.jd-on #jira .split-view .list-panel,
+html.jd-on #jira .split-view .detail-panel,
+html.jd-on #jira .issue-list,
+html.jd-on #jira .list-content,
+html.jd-on #jira .list-ordering,
+html.jd-on #jira .pager-container,
+html.jd-on #jira .results-count-total,
+html.jd-on #jira .filter-panel,
+html.jd-on #jira .filter-panel-section,
+html.jd-on #jira .navigator-sidebar,
+html.jd-on #jira .ui-sidebar {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .navigator-sidebar,
+html.jd-on #jira .filter-panel,
+html.jd-on #jira .ui-sidebar,
+html.jd-on #jira .split-view .list-panel {
+  background-color: var(--jd-bg-alt) !important;
+}
+html.jd-on #jira .issue-list > li {
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #jira .issue-list > li:hover {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on #jira .issue-list > li.focused,
+html.jd-on #jira .issue-list > li.focused:hover {
+  background-color: var(--jd-select) !important;
+}
+html.jd-on #jira .issue-list .issue-link-summary,
+html.jd-on #jira .issue-list .issue-link-key {
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .issue-list > li.focused .issue-link-summary {
+  color: var(--jd-text-hi) !important;
+}
+
+/* Results table (list view) */
+html.jd-on #jira #issuetable,
+html.jd-on #jira #issuetable > thead > tr > th,
+html.jd-on #jira #issuetable > tbody > tr > td {
+  border-color: var(--jd-border) !important;
+  background-color: transparent !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira #issuetable > thead > tr > th,
+html.jd-on #jira #issuetable > thead .sortable:hover {
+  background-color: var(--jd-bg-alt) !important;
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #jira #issuetable tr.focused > td,
+html.jd-on #jira #issuetable tr.issuerow.focused {
+  background-color: var(--jd-select) !important;
+}
+
+/* Basic search criteria pills */
+html.jd-on #jira .criteria-selector,
+html.jd-on #jira .criteria-selector button,
+html.jd-on #jira .searcherValue {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border-hi) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .criteria-selector:hover,
+html.jd-on #jira .criteria-selector.active {
+  background-color: var(--jd-hover) !important;
+}
+/* JQL box */
+html.jd-on #jira #advanced-search,
+html.jd-on #jira .advanced-search,
+html.jd-on #jira .jql-autocomplete-container,
+html.jd-on #jira .search-entry-container {
+  background-color: var(--jd-bg-deep) !important;
+  color: var(--jd-text-hi) !important;
+  border-color: var(--jd-border-hi) !important;
+}
+
+/* ===================== Agile boards (Software) ===================== */
+
+html.jd-on #jira #gh,
+html.jd-on #jira #ghx-content-main,
+html.jd-on #jira #ghx-work,
+html.jd-on #jira #ghx-plan,
+html.jd-on #jira #ghx-report,
+html.jd-on #jira #ghx-header,
+html.jd-on #jira #ghx-operations,
+html.jd-on #jira #ghx-controls,
+html.jd-on #jira #ghx-modes-tools,
+html.jd-on #jira #ghx-pool-column,
+html.jd-on #jira #ghx-pool-wrapper,
+html.jd-on #jira #ghx-pool,
+html.jd-on #jira .ghx-pool,
+html.jd-on #jira #ghx-column-header-group,
+html.jd-on #jira #ghx-column-headers,
+html.jd-on #jira .ghx-column-headers,
+html.jd-on #jira .ghx-swimlane,
+html.jd-on #jira .ghx-swimlane-header,
+html.jd-on #jira #ghx-backlog,
+html.jd-on #jira .ghx-backlog-container,
+html.jd-on #jira .ghx-backlog-group,
+html.jd-on #jira .ghx-backlog-header,
+html.jd-on #jira .ghx-sprint-group,
+html.jd-on #jira .ghx-plan-backlog,
+html.jd-on #jira #ghx-detail-view,
+html.jd-on #jira #ghx-detail-contents,
+html.jd-on #jira .ghx-detail-view,
+html.jd-on #jira .ghx-detail-head,
+html.jd-on #jira .ghx-detail-section,
+html.jd-on #jira #ghx-mapping,
+html.jd-on #jira #ghx-config,
+html.jd-on #jira .ghx-classification-pane,
+html.jd-on #jira #ghx-epic-column,
+html.jd-on #jira #ghx-version-column,
+html.jd-on #jira .ghx-plan-column {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+/* Columns are a slightly lighter well, cards sit on top */
+html.jd-on #jira .ghx-columns .ghx-column,
+html.jd-on #jira #ghx-column-headers .ghx-column,
+html.jd-on #jira .ghx-column-headers .ghx-column {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-bg) !important;
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #jira .ghx-column-headers .ghx-column h2,
+html.jd-on #jira .ghx-column-headers .ghx-column .ghx-column-header-content {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #jira .ghx-columns .ghx-column.ui-sortable-active,
+html.jd-on #jira .ghx-columns .ghx-column.ghx-drop-target {
+  background-color: var(--jd-surface) !important;
+}
+
+/* Cards */
+html.jd-on #jira .ghx-issue,
+html.jd-on #jira .ghx-issue-compact,
+html.jd-on #jira .ghx-backlog-container .js-issue,
+html.jd-on #jira .ghx-issue-content,
+html.jd-on #jira .ghx-parent-group,
+html.jd-on #jira .ghx-parent-stub,
+html.jd-on #jira .ghx-plan-extra-fields {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+  box-shadow: none !important;
+}
+html.jd-on #jira .ghx-issue:hover,
+html.jd-on #jira .ghx-issue-compact:hover {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on #jira .ghx-issue.ghx-selected,
+html.jd-on #jira .ghx-issue-compact.ghx-selected,
+html.jd-on #jira .ghx-issue.ghx-selected .ghx-issue-content,
+html.jd-on #jira .ghx-issue-compact.ghx-selected .ghx-issue-content {
+  background-color: var(--jd-select) !important;
+}
+html.jd-on #jira .ghx-issue .ghx-summary,
+html.jd-on #jira .ghx-issue-compact .ghx-summary,
+html.jd-on #jira .ghx-inner {
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .ghx-issue .ghx-key a,
+html.jd-on #jira .ghx-key,
+html.jd-on #jira .ghx-key-link {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #jira .ghx-issue.ghx-done .ghx-summary,
+html.jd-on #jira .ghx-issue-compact.ghx-done .ghx-summary {
+  color: var(--jd-text-faint) !important;
+}
+html.jd-on #jira .ghx-issue .ghx-grabber {
+  opacity: 0.9;
+}
+html.jd-on #jira .ghx-extra-field,
+html.jd-on #jira .ghx-extra-field-content,
+html.jd-on #jira .ghx-days {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #jira .ghx-days {
+  background-color: var(--jd-border) !important;
+}
+html.jd-on #jira .ghx-estimate .aui-badge,
+html.jd-on #jira aui-badge,
+html.jd-on #jira .ghx-statistic-badge {
+  background-color: var(--jd-border-hi) !important;
+  color: var(--jd-text-hi) !important;
+}
+
+/* Swimlane headers, sprint headers, backlog footer */
+html.jd-on #jira .ghx-swimlane-header,
+html.jd-on #jira .ghx-swimlane-header .ghx-heading,
+html.jd-on #jira .ghx-backlog-header,
+html.jd-on #jira .ghx-sprint-meta,
+html.jd-on #jira .ghx-issues .ghx-helper,
+html.jd-on #jira .ghx-backlog-group .ghx-helper {
+  background-color: var(--jd-bg) !important;
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #jira .ghx-backlog-header .ghx-name,
+html.jd-on #jira .ghx-backlog-header .field-value {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #jira .ghx-issue-compact .ghx-end,
+html.jd-on #jira .ghx-issue-compact .ghx-estimate {
+  background-color: transparent !important;
+}
+/* Coloured epic / label chips on cards: keep hue, darken text for contrast */
+html.jd-on #jira .aui-label[class*="ghx-label"] {
+  color: #1b1d23 !important;
+  border-color: transparent !important;
+}
+html.jd-on #jira .ghx-swimlane-header.ghx-swimlane-header-stalker,
+html.jd-on #jira .ghx-swimlane-header:hover {
+  background-color: var(--jd-bg-alt) !important;
+}
+html.jd-on #jira .ghx-backlog-container .ghx-issues {
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #jira .ghx-quick-content,
+html.jd-on #jira #js-work-quickfilters,
+html.jd-on #jira .js-quickfilter-button,
+html.jd-on #jira .ghx-quickfilter {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #jira .js-quickfilter-button.ghx-active,
+html.jd-on #jira .ghx-quickfilter.ghx-active {
+  background-color: var(--jd-select) !important;
+  color: var(--jd-text-hi) !important;
+}
+
+/* Detail sidebar on boards */
+html.jd-on #jira #ghx-detail-view,
+html.jd-on #jira .ghx-detail-head,
+html.jd-on #jira .ghx-detail-nav-menu,
+html.jd-on #jira .ghx-detail-nav-content {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #jira .ghx-sizer {
+  background-color: var(--jd-border) !important;
+}
+
+/* ===================== Dashboards ===================== */
+
+html.jd-on #jira #dashboard,
+html.jd-on #jira .dashboard,
+html.jd-on #jira #dashboard-content,
+html.jd-on #jira .dashboard-content,
+html.jd-on #jira .column,
+html.jd-on #jira .layout {
+  background-color: var(--jd-bg) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .gadget,
+html.jd-on #jira .dashboard-item-frame,
+html.jd-on #jira .dashboard-item-content,
+html.jd-on #jira .gadget-container,
+html.jd-on #jira .gadget .dashboard-item-header,
+html.jd-on #jira .dashboard-item-header,
+html.jd-on #jira .gadget-inline,
+html.jd-on #jira .gadget-colors .dashboard-item-header,
+html.jd-on #jira .g-filterresults,
+html.jd-on #jira .g-assignedtome,
+html.jd-on #jira .view {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .dashboard-item-title,
+html.jd-on #jira .dashboard-item-header h3 {
+  color: var(--jd-text-hi) !important;
+}
+/* Gadget iframes render their own document under #jira too */
+html.jd-on #jira.gadget-content,
+html.jd-on #jira .gadget-content {
+  background-color: var(--jd-bg-alt) !important;
+}
+
+/* ===================== Projects, sidebar, admin, profile ===================== */
+
+html.jd-on #jira .aui-sidebar .aui-sidebar-group,
+html.jd-on #jira .aui-sidebar .aui-navgroup,
+html.jd-on #jira .aui-sidebar .aui-sidebar-header,
+html.jd-on #jira .aui-sidebar .aui-page-header,
+html.jd-on #jira .aui-sidebar .aui-navgroup-inner {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #jira .aui-sidebar .aui-sidebar-footer .aui-sidebar-toggle {
+  color: var(--jd-text-dim) !important;
+}
+
+html.jd-on #jira #admin-page-heading,
+html.jd-on #jira .admin-menu-links,
+html.jd-on #jira .admin-active-area,
+html.jd-on #jira .tabwrap,
+html.jd-on #jira .tabwrap.tabs2,
+html.jd-on #jira .jiraform,
+html.jd-on #jira table.jiraform,
+html.jd-on #jira .jiraformheader,
+html.jd-on #jira .jiraformbody,
+html.jd-on #jira .jiraformfooter,
+html.jd-on #jira .grid,
+html.jd-on #jira table.grid td,
+html.jd-on #jira table.grid th,
+html.jd-on #jira .rowNormal,
+html.jd-on #jira .rowAlternate,
+html.jd-on #jira .rowHeader,
+html.jd-on #jira #user-profile,
+html.jd-on #jira .vcard,
+html.jd-on #jira #main-content,
+html.jd-on #jira .project-config-panel,
+html.jd-on #jira .project-config-scheme-item {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .rowAlternate,
+html.jd-on #jira .rowHeader,
+html.jd-on #jira .jiraformheader,
+html.jd-on #jira table.grid th {
+  background-color: var(--jd-bg-alt) !important;
+}
+
+/* Create / edit issue form fields */
+html.jd-on #jira .form-body,
+html.jd-on #jira .qf-container,
+html.jd-on #jira .qf-form,
+html.jd-on #jira .qf-field,
+html.jd-on #jira .field-group,
+html.jd-on #jira .form-footer,
+html.jd-on #jira .qf-picker,
+html.jd-on #jira .qf-picker-header,
+html.jd-on #jira .qf-picker-content,
+html.jd-on #jira #inline-dialog-field_picker_popup .contents {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+
+/* Login page */
+html.jd-on #jira.page-type-login .aui-page-panel,
+html.jd-on #jira #login-form {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+}
+
+/* Keyboard shortcut and "what's new" dialogs */
+html.jd-on #jira #keyboard-shortcuts-dialog .module,
+html.jd-on #jira #shortcutsmenu,
+html.jd-on #jira .keyboard-shortcuts-dialog {
+  background-color: var(--jd-bg-alt) !important;
+}
