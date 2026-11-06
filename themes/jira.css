@@ -549,3 +549,40 @@ html.jd-on #jira #shortcutsmenu,
 html.jd-on #jira .keyboard-shortcuts-dialog {
   background-color: var(--jd-bg-alt) !important;
 }
+
+/* ===================== Jira 9/10 additions ===================== */
+
+/* Module headings ("Details", "People", "Dates" …) are toggle buttons */
+html.jd-on #jira .toggle-title,
+html.jd-on #jira .aui-toggle-header-button-label,
+html.jd-on #jira .mod-header .aui-button.toggle-title {
+  color: var(--jd-text-hi) !important;
+  background: transparent !important;
+}
+
+/* Project sidebar header and selected item */
+html.jd-on #jira .aui-sidebar .aui-page-header-main h1 a,
+html.jd-on #jira .aui-sidebar .aui-page-header-main h2 a,
+html.jd-on #jira .aui-sidebar-header h1 a,
+html.jd-on #jira .aui-sidebar-header h2 a,
+html.jd-on #jira .aui-sidebar .aui-sidebar-header-large h1,
+html.jd-on #jira .aui-sidebar .aui-sidebar-header-large h2 {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #jira .aui-sidebar .aui-nav-selected,
+html.jd-on #jira .aui-sidebar li.aui-nav-selected {
+  background-color: var(--jd-select) !important;
+}
+
+/* Issue search header band and result-list pager */
+html.jd-on #jira .issue-search-header,
+html.jd-on #jira .pagination-view,
+html.jd-on #jira .count-pagination,
+html.jd-on #jira .end-of-stable-message {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #jira .issue-list .issue-link-summary {
+  color: var(--jd-text) !important;
+}

@@ -45,7 +45,12 @@ html.jd-on #com-atlassian-confluence .acs-tree-item {
   border-color: var(--jd-border) !important;
   color: var(--jd-text) !important;
 }
+/* Sidebar resize handle: subtle line, accent only while hovered/dragged */
 html.jd-on #com-atlassian-confluence .ia-splitter-handle-highlight {
+  background-color: var(--jd-border) !important;
+}
+html.jd-on #com-atlassian-confluence .ia-splitter-handle:hover .ia-splitter-handle-highlight,
+html.jd-on #com-atlassian-confluence .ia-splitter-handle.dragging .ia-splitter-handle-highlight {
   background-color: var(--jd-blue) !important;
 }
 html.jd-on #com-atlassian-confluence .acs-nav-item-label,

@@ -75,6 +75,32 @@
         "purple": "#6c71c4", "cyan": "#2aa198", "orange": "#cb4b16", "image-bg": "#fdf6e3",
       },
     },
+    // Catppuccin Mocha (MIT): base/mantle/crust, surface0-2, overlay/subtext/text.
+    "catppuccin-mocha": {
+      name: "Catppuccin Mocha",
+      builtIn: true,
+      colors: {
+        "bg": "#1e1e2e", "bg-alt": "#181825", "bg-deep": "#11111b", "surface": "#313244",
+        "hover": "#3a3c52", "select": "#414763", "border": "#45475a", "border-hi": "#585b70",
+        "text": "#bac2de", "text-hi": "#cdd6f4", "text-dim": "#a6adc8", "text-faint": "#7f849c",
+        "blue": "#89b4fa", "blue-hi": "#b4befe", "accent": "#89b4fa", "accent-hi": "#b4befe",
+        "on-accent": "#11111b", "green": "#a6e3a1", "yellow": "#f9e2af", "red": "#f38ba8",
+        "purple": "#cba6f7", "cyan": "#94e2d5", "orange": "#fab387", "image-bg": "#eff1f5",
+      },
+    },
+    // Monokai Pro palette (default filter): dark1/dark2 backgrounds, dimmed1-5 greys.
+    "monokai-pro": {
+      name: "Monokai Pro",
+      builtIn: true,
+      colors: {
+        "bg": "#2d2a2e", "bg-alt": "#221f22", "bg-deep": "#19181a", "surface": "#363337",
+        "hover": "#403e41", "select": "#4d4a4f", "border": "#403e41", "border-hi": "#5b595c",
+        "text": "#e3e1e4", "text-hi": "#fcfcfa", "text-dim": "#939293", "text-faint": "#727072",
+        "blue": "#78dce8", "blue-hi": "#a5e8f0", "accent": "#ffd866", "accent-hi": "#ffe28c",
+        "on-accent": "#2d2a2e", "green": "#a9dc76", "yellow": "#ffd866", "red": "#ff6188",
+        "purple": "#ab9df2", "cyan": "#78dce8", "orange": "#fc9867", "image-bg": "#fcfcfa",
+      },
+    },
   };
 
   const DEFAULT_THEME = "one-dark";

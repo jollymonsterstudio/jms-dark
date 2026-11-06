@@ -28,10 +28,12 @@ revokes the site permission).
 
 ## Themes
 
-Two themes are built in:
+Built-in themes:
 
 - **One Dark** (default)
 - **Solarized Dark**
+- **Catppuccin Mocha**
+- **Monokai Pro**
 
 Click **Edit…** in the popup (or *Preferences* in `about:addons`) to open the
 theme editor. There you can:
@@ -119,5 +121,12 @@ npx web-ext sign --source-dir . --channel=unlisted --artifacts-dir dist
 
 [MIT](LICENSE) © Jolly Monster Studio. Colour palettes after
 [One Dark](https://github.com/atom/atom/tree/master/packages/one-dark-syntax) (MIT)
-and [Solarized](https://ethanschoonover.com/solarized/) by Ethan Schoonover (MIT).
+[Solarized](https://ethanschoonover.com/solarized/) by Ethan Schoonover (MIT),
+[Catppuccin](https://github.com/catppuccin/catppuccin) Mocha (MIT) and the
+[Monokai Pro](https://monokai.pro/) palette by Monokai; this project is not
+affiliated with or endorsed by their authors.
 Not affiliated with or endorsed by Atlassian.
+
+Screenshots in the AMO listing were taken on Atlassian's public
+[jira.atlassian.com](https://jira.atlassian.com) and Apache's public
+[cwiki.apache.org](https://cwiki.apache.org/confluence).
