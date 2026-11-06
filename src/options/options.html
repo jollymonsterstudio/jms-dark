@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JMS Dark — Themes</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header>
+      <h1>JMS Dark themes</h1>
+      <p class="sub">Pick the colour theme for Jira &amp; Confluence, or make your own. Changes apply live to open tabs.</p>
+    </header>
+
+    <main>
+      <aside>
+        <h2>Themes</h2>
+        <ul id="theme-list"></ul>
+        <div class="stack">
+          <button id="new-theme" type="button">New theme from selected</button>
+          <details>
+            <summary>Import JSON</summary>
+            <textarea id="import-text" rows="6" placeholder='{"name": "My theme", "colors": {"bg": "#1e1e1e", …}}'></textarea>
+            <button id="import-btn" type="button">Import</button>
+          </details>
+        </div>
+        <p id="msg" class="msg" hidden></p>
+      </aside>
+
+      <section id="editor">
+        <div class="editor-head">
+          <input id="name" type="text" maxlength="40" aria-label="Theme name" />
+          <div class="actions">
+            <button id="use" type="button" class="primary">Use this theme</button>
+            <button id="export" type="button">Export JSON</button>
+            <button id="delete" type="button" class="danger">Delete</button>
+          </div>
+        </div>
+        <p id="readonly-note" class="note" hidden>Built-in themes are read-only — use <em>New theme from selected</em> to customise a copy.</p>
+
+        <div class="columns">
+          <div id="tokens"></div>
+
+          <div class="preview-wrap">
+            <h2>Preview</h2>
+            <div id="preview" class="preview">
+              <div class="pv-top"><span class="pv-logo">●</span> Projects · Boards · Issues <span class="pv-search">Search</span></div>
+              <div class="pv-body">
+                <div class="pv-side">
+                  <div class="pv-nav pv-sel">Backlog</div>
+                  <div class="pv-nav">Active sprint</div>
+                  <div class="pv-nav pv-hover">Reports</div>
+                </div>
+                <div class="pv-main">
+                  <h3>PROJ-42 Make the wiki easier on the eyes</h3>
+                  <p class="pv-dim">Created yesterday · Updated 5 minutes ago</p>
+                  <p>Body text with a <a>link</a>, some <code>inline code</code> and a <span class="pv-faint">faint note</span>.</p>
+                  <div class="pv-msg pv-info">Info: deploy window starts at 18:00.</div>
+                  <div class="pv-msg pv-warn">Warning: two reviewers still pending.</div>
+                  <table>
+                    <tr><th>Field</th><th>Value</th></tr>
+                    <tr><td>Status</td><td><span class="pv-lozenge">IN PROGRESS</span></td></tr>
+                    <tr class="pv-row-sel"><td>Assignee</td><td>Selected row</td></tr>
+                  </table>
+<pre class="pv-code"><span class="k">public</span> <span class="k">int</span> <span class="f">total</span>() { <span class="c">// sum</span>
+  <span class="k">return</span> <span class="s">"ok"</span>.length() + <span class="n">42</span>;
+}</pre>
+                  <div class="pv-card">
+                    <span class="pv-dim">PROJ-43</span> Card on a board <span class="pv-badge">3h</span>
+                  </div>
+                  <div class="pv-buttons">
+                    <span class="pv-btn pv-primary">Create</span>
+                    <span class="pv-btn">Cancel</span>
+                    <span class="pv-input">Text input</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../themes.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

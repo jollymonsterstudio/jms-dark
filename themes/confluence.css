@@ -151,11 +151,11 @@ html.jd-on #com-atlassian-confluence .ic-action-bar {
   color: var(--jd-text) !important;
 }
 html.jd-on #com-atlassian-confluence .inline-comment-marker.valid {
-  background-color: rgba(229, 192, 123, 0.18) !important;
+  background-color: color-mix(in srgb, var(--jd-yellow) 18%, var(--jd-bg)) !important;
   border-bottom: 2px solid var(--jd-yellow) !important;
 }
 html.jd-on #com-atlassian-confluence .inline-comment-marker.valid.active {
-  background-color: rgba(229, 192, 123, 0.32) !important;
+  background-color: color-mix(in srgb, var(--jd-yellow) 32%, var(--jd-bg)) !important;
 }
 
 /* ===================== Editor chrome ===================== */
@@ -291,17 +291,17 @@ html.jd-on #com-atlassian-confluence .pageSectionHeader {
 html.jd-on #com-atlassian-confluence .diff-html-added,
 html.jd-on #com-atlassian-confluence ins.diff-html-added,
 html.jd-on #com-atlassian-confluence .diff-added-lines {
-  background-color: #2b3d2c !important;
+  background-color: color-mix(in srgb, var(--jd-green) 28%, var(--jd-bg)) !important;
   color: var(--jd-text-hi) !important;
 }
 html.jd-on #com-atlassian-confluence .diff-html-removed,
 html.jd-on #com-atlassian-confluence del.diff-html-removed,
 html.jd-on #com-atlassian-confluence .diff-deleted-lines {
-  background-color: #452b2f !important;
+  background-color: color-mix(in srgb, var(--jd-red) 28%, var(--jd-bg)) !important;
   color: var(--jd-text-hi) !important;
 }
 html.jd-on #com-atlassian-confluence .diff-html-changed {
-  background-color: #3d3725 !important;
+  background-color: color-mix(in srgb, var(--jd-yellow) 22%, var(--jd-bg)) !important;
 }
 
 /* ===================== Space tools / admin ===================== */

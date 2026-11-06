@@ -14,7 +14,7 @@ const SCRIPT_ID = "jms-dark";
 const SITES_KEY = "sites";
 
 const THEME_CSS = ["themes/base.css", "themes/content.css", "themes/jira.css", "themes/confluence.css"];
-const CONTENT_JS = ["src/content.js"];
+const CONTENT_JS = ["src/themes.js", "src/content.js"];
 
 const patternFor = (origin) => `${origin}/*`;
 

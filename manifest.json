@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "JMS Dark for Jira & Confluence",
   "short_name": "JMS Dark",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Dark theme for self-hosted (Server / Data Center) Jira and Confluence. Enable it per site from the toolbar.",
   "author": "Jolly Monster Studio",
   "browser_specific_settings": {
@@ -44,5 +44,9 @@
     "scripts": [
       "src/background.js"
     ]
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
   }
 }

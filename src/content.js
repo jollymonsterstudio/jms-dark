@@ -20,53 +20,77 @@
 
   const CLASS_ON = "jd-on";
   const EDITOR_STYLE_ID = "jd-editor-style";
+  const PALETTE_STYLE_ID = "jd-palette";
   const MODE_KEY = "mode"; // "on" | "off" | "system"
   const DEFAULT_MODE = "on";
 
   const api = globalThis.browser ?? globalThis.chrome;
+  const T = globalThis.JMS_THEMES; // src/themes.js, loaded first
   const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
   let mode = DEFAULT_MODE;
+  let themeId = T.DEFAULT_THEME;
+  let customThemes = {};
 
   const isActive = () => mode === "on" || (mode === "system" && darkQuery.matches);
+  const colors = () => T.resolve(themeId, customThemes);
 
-  // Styles for the editable body inside TinyMCE iframes. Kept self-contained
-  // (no CSS variables from the parent) because it lives in a separate document.
-  const EDITOR_CSS = `
+  // Styles for the editable body inside TinyMCE iframes. That is a separate
+  // document, so it gets its own copy of the palette on :root (see editorCss).
+  const EDITOR_RULES = `
     html, body, body#tinymce, body.mce-content-body {
-      background: #282c34 !important;
-      color: #abb2bf !important;
+      background: var(--jd-bg) !important;
+      color: var(--jd-text) !important;
       color-scheme: dark;
     }
     body.mce-content-body p, body.mce-content-body li, body.mce-content-body td,
     body.mce-content-body th, body.mce-content-body div, body.mce-content-body span:not([style*="color"]) {
-      color: #abb2bf;
+      color: var(--jd-text);
     }
     body.mce-content-body h1, body.mce-content-body h2, body.mce-content-body h3,
     body.mce-content-body h4, body.mce-content-body h5, body.mce-content-body h6 {
-      color: #dcdfe4 !important;
+      color: var(--jd-text-hi) !important;
     }
-    body.mce-content-body a { color: #61afef !important; }
+    body.mce-content-body a { color: var(--jd-blue) !important; }
     body.mce-content-body table, body.mce-content-body td, body.mce-content-body th {
-      border-color: #3e4451 !important;
+      border-color: var(--jd-border) !important;
     }
     body.mce-content-body th, body.mce-content-body .confluenceTh,
-    body.mce-content-body .highlight-grey { background-color: #2c313a !important; }
+    body.mce-content-body .highlight-grey { background-color: var(--jd-surface) !important; }
     body.mce-content-body td, body.mce-content-body .confluenceTd { background-color: transparent; }
     body.mce-content-body pre, body.mce-content-body code, body.mce-content-body tt {
-      background-color: #1b1d23 !important;
-      color: #d19a66 !important;
+      background-color: var(--jd-bg-deep) !important;
+      color: var(--jd-orange) !important;
     }
     /* Confluence macro placeholders in the editor */
     body.mce-content-body table.wysiwyg-macro,
     body.mce-content-body table.wysiwyg-macro td,
     body.mce-content-body .wysiwyg-macro-body {
-      background-color: #21252b !important;
-      border-color: #4b5263 !important;
+      background-color: var(--jd-bg-alt) !important;
+      border-color: var(--jd-border-hi) !important;
     }
     body.mce-content-body table.wysiwyg-macro { background-image: none !important; }
-    body.mce-content-body ::selection { background: #3e4f6e; }
+    body.mce-content-body ::selection { background: var(--jd-select); }
   `;
+
+  const editorCss = () => T.toCss(colors(), ":root") + EDITOR_RULES;
+
+  /**
+   * Put the active palette on this document. `:root.jd-on` outranks the
+   * One Dark defaults declared on `html.jd-on` in base.css, whatever the order.
+   */
+  function applyPalette(doc = document) {
+    const root = doc.documentElement;
+    if (!root) return;
+    let style = doc.getElementById(PALETTE_STYLE_ID);
+    if (!style) {
+      style = doc.createElement("style");
+      style.id = PALETTE_STYLE_ID;
+      root.appendChild(style); // <head> may not exist yet at document_start
+    }
+    const css = T.toCss(colors(), ":root.jd-on");
+    if (style.textContent !== css) style.textContent = css;
+  }
 
   function applyClass(doc = document) {
     const root = doc.documentElement;
@@ -87,6 +111,7 @@
       if (!document.documentElement) return;
       waiter.disconnect();
       applyClass();
+      applyPalette();
       watchRoot(document.documentElement);
       if (window === window.top) startFrameWatcher();
     });
@@ -114,8 +139,9 @@
     if (!style) {
       style = doc.createElement("style");
       style.id = EDITOR_STYLE_ID;
-      style.textContent = EDITOR_CSS;
     }
+    const css = editorCss();
+    if (style.textContent !== css) style.textContent = css;
     // Re-append so it stays last in the cascade after the editor adds its own sheets.
     (doc.head ?? doc.documentElement).appendChild(style);
   }
@@ -146,25 +172,35 @@
 
   function update() {
     applyClass();
+    applyPalette();
     if (window === window.top) restyleAllFrames();
   }
 
-  // 1. Optimistic: dark immediately.
+  function readSettings(data) {
+    const m = data?.[MODE_KEY];
+    mode = m === "on" || m === "off" || m === "system" ? m : DEFAULT_MODE;
+    themeId = typeof data?.[T.KEYS.theme] === "string" ? data[T.KEYS.theme] : T.DEFAULT_THEME;
+    customThemes = data?.[T.KEYS.custom] ?? {};
+  }
+
+  // 1. Optimistic: dark immediately (One Dark defaults from base.css).
   applyClass();
   guardRootClass();
 
-  // 2. Correct from storage.
-  api.storage.local.get(MODE_KEY).then((data) => {
-    const stored = data?.[MODE_KEY];
-    if (stored === "on" || stored === "off" || stored === "system") mode = stored;
+  // 2. Correct mode and palette from storage.
+  api.storage.local.get([MODE_KEY, T.KEYS.theme, T.KEYS.custom]).then((data) => {
+    readSettings(data);
     update();
   }, update);
 
-  // 3. React to popup changes and OS theme changes live.
+  // 3. React to popup / options changes and OS theme changes live.
   api.storage.onChanged.addListener((changes, area) => {
-    if (area !== "local" || !(MODE_KEY in changes)) return;
-    mode = changes[MODE_KEY].newValue ?? DEFAULT_MODE;
-    update();
+    if (area !== "local") return;
+    if (!(MODE_KEY in changes) && !(T.KEYS.theme in changes) && !(T.KEYS.custom in changes)) return;
+    api.storage.local.get([MODE_KEY, T.KEYS.theme, T.KEYS.custom]).then((data) => {
+      readSettings(data);
+      update();
+    });
   });
   darkQuery.addEventListener("change", () => {
     if (mode === "system") update();

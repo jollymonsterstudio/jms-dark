@@ -65,3 +65,20 @@ li {
 li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .error { margin: 0 0 8px; color: var(--red); font-size: 12px; }
 .ver { margin: 0; color: #5c6370; font-size: 11px; }
+.theme-row { display: flex; gap: 6px; margin-top: 8px; }
+select {
+  flex: 1;
+  min-width: 0;
+  padding: 4px 6px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #1b1d23;
+  color: var(--text-hi);
+  font: inherit;
+}
+button.secondary {
+  margin: 0;
+  background: #2c313a;
+  border: 1px solid var(--border);
+  color: var(--text-hi);
+}

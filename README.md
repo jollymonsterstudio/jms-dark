@@ -22,9 +22,45 @@ Firefox 140+ on desktop, 142+ on Android.
    enable this way.
 3. The page turns dark immediately; future visits are themed from the first paint.
 
-The popup also switches the theme between **Dark**, **Follow system** and
-**Off**, and lists enabled sites so you can remove them (which also revokes the
-site permission).
+The popup also switches between **Dark**, **Follow system** and **Off**, picks
+the colour theme, and lists enabled sites so you can remove them (which also
+revokes the site permission).
+
+## Themes
+
+Two themes are built in:
+
+- **One Dark** (default)
+- **Solarized Dark**
+
+Click **Edit…** in the popup (or *Preferences* in `about:addons`) to open the
+theme editor. There you can:
+
+- copy any theme with **New theme from selected** and change its 24 colours with
+  a live preview; edits apply instantly to open tabs
+- **Export JSON** to share a theme, and **Import JSON** to load one
+
+A theme is just a name plus a colour map; any token you leave out falls back to
+One Dark:
+
+```json
+{
+  "name": "My theme",
+  "colors": {
+    "bg": "#1e1e1e", "bg-alt": "#252526", "bg-deep": "#181818", "surface": "#2d2d30",
+    "text": "#cccccc", "text-hi": "#ffffff", "blue": "#4fc1ff", "accent": "#0e639c"
+  }
+}
+```
+
+Tokens: `bg`, `bg-alt`, `bg-deep`, `surface`, `hover`, `select`, `border`,
+`border-hi`, `text`, `text-hi`, `text-dim`, `text-faint`, `blue`, `blue-hi`,
+`accent`, `accent-hi`, `on-accent`, `green`, `yellow`, `red`, `purple`, `cyan`,
+`orange`, `image-bg`. Each becomes a `--jd-<token>` CSS variable. Tinted
+backgrounds (messages, cell highlights, diffs) are mixed from these, so they
+follow the theme automatically.
+
+To ship a new built-in theme, add it to `BUILT_IN` in `src/themes.js`.
 
 ## What's covered
 
@@ -47,16 +83,19 @@ issues and PRs welcome.
 | --- | --- |
 | `manifest.json` | MV3 manifest; host access is requested per site at runtime (`optional_host_permissions`) |
 | `src/background.js` | Keeps one dynamic content-script registration for all enabled, permitted sites |
-| `src/content.js` | Toggles `html.jd-on` from the chosen mode; styles TinyMCE editor iframes |
-| `src/popup/` | Enable/remove sites, choose mode |
-| `themes/base.css` | Palette variables, page chrome, AUI components, forms |
+| `src/themes.js` | Built-in themes, token list, theme validation |
+| `src/content.js` | Toggles `html.jd-on`, applies the selected palette, styles TinyMCE editor iframes |
+| `src/popup/` | Enable/remove sites, choose mode and theme |
+| `src/options/` | Theme editor (create, edit, import/export) |
+| `themes/base.css` | Default (One Dark) palette, page chrome, AUI components, forms |
 | `themes/content.css` | Rendered wiki markup shared by Jira and Confluence |
 | `themes/jira.css` | Jira screens, scoped to `body#jira` |
 | `themes/confluence.css` | Confluence screens, scoped to `body#com-atlassian-confluence` |
 
 Every rule is scoped under `html.jd-on`, so switching the theme off just
 removes that class. The extension collects no data and makes no network
-requests; it stores only the mode and the list of enabled sites, locally.
+requests; it stores only the mode, theme choice, custom themes and the list of enabled
+sites, locally.
 
 ## Develop
 
@@ -78,6 +117,7 @@ npx web-ext sign --source-dir . --channel=unlisted --artifacts-dir dist
 
 ## License
 
-[MIT](LICENSE) © Jolly Monster Studio. Colour palette after
-[One Dark](https://github.com/atom/atom/tree/master/packages/one-dark-syntax) (MIT).
+[MIT](LICENSE) © Jolly Monster Studio. Colour palettes after
+[One Dark](https://github.com/atom/atom/tree/master/packages/one-dark-syntax) (MIT)
+and [Solarized](https://ethanschoonover.com/solarized/) by Ethan Schoonover (MIT).
 Not affiliated with or endorsed by Atlassian.

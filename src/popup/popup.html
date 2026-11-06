@@ -21,6 +21,10 @@
       <label><input type="radio" name="mode" value="on" /> Dark</label>
       <label><input type="radio" name="mode" value="system" /> Follow system</label>
       <label><input type="radio" name="mode" value="off" /> Off</label>
+      <div class="theme-row">
+        <select id="theme" aria-label="Colour theme"></select>
+        <button id="edit-themes" type="button" class="secondary">Edit…</button>
+      </div>
     </fieldset>
 
     <section class="box">
@@ -32,6 +36,7 @@
     <p id="error" class="error" hidden></p>
     <p class="ver" id="ver"></p>
 
+    <script src="../themes.js"></script>
     <script src="popup.js"></script>
   </body>
 </html>

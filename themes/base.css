@@ -34,6 +34,8 @@ html.jd-on {
   --jd-purple: #c678dd;
   --jd-cyan: #56b6c2;
   --jd-orange: #d19a66;
+  --jd-on-accent: #ffffff;   /* text on primary buttons / coloured chips */
+  --jd-image-bg: #ffffff;    /* behind transparent diagrams */
 
   color-scheme: dark;
   scrollbar-color: var(--jd-border-hi) var(--jd-bg-alt);
@@ -239,7 +241,7 @@ html.jd-on .aui-button-primary,
 html.jd-on input[type="submit"].aui-button-primary {
   background: var(--jd-accent) !important;
   border-color: var(--jd-accent) !important;
-  color: #ffffff !important;
+  color: var(--jd-on-accent) !important;
 }
 html.jd-on .aui-button.aui-button-primary:hover,
 html.jd-on .aui-button-primary:hover {
@@ -481,13 +483,13 @@ html.jd-on .aui-message.aui-message-info,
 html.jd-on .aui-message.info       { border-left: 3px solid var(--jd-blue) !important; }
 html.jd-on .aui-message.aui-message-success,
 html.jd-on .aui-message.success,
-html.jd-on .aui-message-success    { background-color: #27332a !important; border-left: 3px solid var(--jd-green) !important; color: var(--jd-text) !important; }
+html.jd-on .aui-message-success    { background-color: color-mix(in srgb, var(--jd-green) 22%, var(--jd-bg)) !important; border-left: 3px solid var(--jd-green) !important; color: var(--jd-text) !important; }
 html.jd-on .aui-message.aui-message-warning,
 html.jd-on .aui-message.warning,
-html.jd-on .aui-message-warning    { background-color: #3a3426 !important; border-left: 3px solid var(--jd-yellow) !important; color: var(--jd-text) !important; }
+html.jd-on .aui-message-warning    { background-color: color-mix(in srgb, var(--jd-yellow) 22%, var(--jd-bg)) !important; border-left: 3px solid var(--jd-yellow) !important; color: var(--jd-text) !important; }
 html.jd-on .aui-message.aui-message-error,
 html.jd-on .aui-message.error,
-html.jd-on .aui-message-error      { background-color: #3d2a2d !important; border-left: 3px solid var(--jd-red) !important; color: var(--jd-text) !important; }
+html.jd-on .aui-message-error      { background-color: color-mix(in srgb, var(--jd-red) 22%, var(--jd-bg)) !important; border-left: 3px solid var(--jd-red) !important; color: var(--jd-text) !important; }
 html.jd-on .aui-message .title,
 html.jd-on .aui-message strong {
   color: var(--jd-text-hi) !important;

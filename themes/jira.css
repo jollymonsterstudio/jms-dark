@@ -404,7 +404,7 @@ html.jd-on #jira .ghx-issue-compact .ghx-estimate {
 }
 /* Coloured epic / label chips on cards: keep hue, darken text for contrast */
 html.jd-on #jira .aui-label[class*="ghx-label"] {
-  color: #1b1d23 !important;
+  color: var(--jd-bg-deep) !important;
   border-color: transparent !important;
 }
 html.jd-on #jira .ghx-swimlane-header.ghx-swimlane-header-stalker,

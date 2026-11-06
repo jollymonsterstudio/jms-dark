@@ -123,6 +123,30 @@
     })
   );
 
+  // Colour theme
+  const T = globalThis.JMS_THEMES;
+  async function renderThemes() {
+    const data = await api.storage.local.get([T.KEYS.theme, T.KEYS.custom]);
+    const themes = T.allThemes(data[T.KEYS.custom]);
+    const current = themes[data[T.KEYS.theme]] ? data[T.KEYS.theme] : T.DEFAULT_THEME;
+    const select = $("theme");
+    select.replaceChildren(
+      ...Object.entries(themes).map(([id, t]) => {
+        const o = document.createElement("option");
+        o.value = id;
+        o.textContent = t.builtIn ? t.name : `${t.name} (custom)`;
+        o.selected = id === current;
+        return o;
+      })
+    );
+  }
+  $("theme").addEventListener("change", (e) => api.storage.local.set({ [T.KEYS.theme]: e.target.value }));
+  $("edit-themes").addEventListener("click", () => {
+    api.runtime.openOptionsPage();
+    window.close();
+  });
+  renderThemes();
+
   $("ver").textContent = `v${api.runtime.getManifest().version}`;
   detectTab()
     .then((t) => { tab = t; })

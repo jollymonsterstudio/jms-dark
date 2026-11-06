@@ -64,12 +64,12 @@ html.jd-on .confluenceTable .sortableHeader {
   color: var(--jd-text-hi) !important;
 }
 /* Coloured cell highlights → dark tints of the same hue */
-html.jd-on .highlight-blue,   html.jd-on [data-highlight-colour="blue"]   { background-color: #263447 !important; }
-html.jd-on .highlight-green,  html.jd-on [data-highlight-colour="green"]  { background-color: #26382a !important; }
-html.jd-on .highlight-yellow, html.jd-on [data-highlight-colour="yellow"] { background-color: #3d3725 !important; }
-html.jd-on .highlight-red,    html.jd-on [data-highlight-colour="red"]    { background-color: #42292d !important; }
-html.jd-on .highlight-purple, html.jd-on [data-highlight-colour="purple"] { background-color: #372b42 !important; }
-html.jd-on .highlight-teal,   html.jd-on [data-highlight-colour="teal"]   { background-color: #233a3c !important; }
+html.jd-on .highlight-blue,   html.jd-on [data-highlight-colour="blue"]   { background-color: color-mix(in srgb, var(--jd-blue) 22%, var(--jd-bg)) !important; }
+html.jd-on .highlight-green,  html.jd-on [data-highlight-colour="green"]  { background-color: color-mix(in srgb, var(--jd-green) 22%, var(--jd-bg)) !important; }
+html.jd-on .highlight-yellow, html.jd-on [data-highlight-colour="yellow"] { background-color: color-mix(in srgb, var(--jd-yellow) 22%, var(--jd-bg)) !important; }
+html.jd-on .highlight-red,    html.jd-on [data-highlight-colour="red"]    { background-color: color-mix(in srgb, var(--jd-red) 22%, var(--jd-bg)) !important; }
+html.jd-on .highlight-purple, html.jd-on [data-highlight-colour="purple"] { background-color: color-mix(in srgb, var(--jd-purple) 22%, var(--jd-bg)) !important; }
+html.jd-on .highlight-teal,   html.jd-on [data-highlight-colour="teal"]   { background-color: color-mix(in srgb, var(--jd-cyan) 22%, var(--jd-bg)) !important; }
 
 /* ===================== Information macros ===================== */
 
@@ -179,7 +179,7 @@ html.jd-on .toc-macro a {
 /* Transparent PNG/SVG diagrams are usually drawn for a white page. */
 html.jd-on .wiki-content img.confluence-embedded-image,
 html.jd-on .user-content-block img:not(.emoticon):not([src*="/images/icons/"]) {
-  background-color: #ffffff;
+  background-color: var(--jd-image-bg);
 }
 html.jd-on img.emoticon {
   background: transparent !important;
