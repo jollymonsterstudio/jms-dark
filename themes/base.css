@@ -580,3 +580,9 @@ html.jd-on blockquote {
 html.jd-on body:not([id]) a:not(.aui-button) {
   color: var(--jd-blue) !important;
 }
+
+/* Keyboard "skip to content" links (visible on focus) */
+html.jd-on .aui-skip-link {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-blue) !important;
+}

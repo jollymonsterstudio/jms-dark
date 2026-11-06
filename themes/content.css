@@ -184,3 +184,21 @@ html.jd-on .user-content-block img:not(.emoticon):not([src*="/images/icons/"]) {
 html.jd-on img.emoticon {
   background: transparent !important;
 }
+
+/* Header cells: Confluence wraps sortable headers in .tablesorter-header-inner
+   (and authors often bold/colour them), so colour everything inside except links. */
+html.jd-on th.confluenceTh *:not(a):not(a *),
+html.jd-on table.confluenceTable th *:not(a):not(a *),
+html.jd-on .tablesorter-header-inner {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .confluenceTable .tablesorter-header,
+html.jd-on .confluenceTable .tablesorter-headerAsc,
+html.jd-on .confluenceTable .tablesorter-headerDesc {
+  background-color: var(--jd-surface) !important;
+}
+/* Code / panel macro titles */
+html.jd-on .codeHeader *,
+html.jd-on .panelHeader * {
+  color: var(--jd-text-hi) !important;
+}

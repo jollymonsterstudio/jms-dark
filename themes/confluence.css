@@ -353,3 +353,11 @@ html.jd-on #com-atlassian-confluence .jim-table-wrap {
 html.jd-on #com-atlassian-confluence .jira-table th {
   background-color: var(--jd-surface) !important;
 }
+
+/* Footer "ATLASSIAN" logo strip */
+html.jd-on #com-atlassian-confluence #footer-logo {
+  background-color: transparent !important;
+}
+html.jd-on #com-atlassian-confluence #footer-logo a {
+  filter: invert(1) brightness(0.75);
+}
