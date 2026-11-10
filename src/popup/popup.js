@@ -74,6 +74,9 @@
     const btn = $("site-btn");
     btn.hidden = true;
     btn.onclick = null;
+    const takeover = $("takeover-btn");
+    takeover.hidden = true;
+    takeover.onclick = null;
     if (!tab) {
       $("site").textContent = "Not a web page";
       $("site-hint").textContent = "Open your Jira or Confluence tab, then click the icon again.";
@@ -85,7 +88,18 @@
         $("site-hint").textContent = "Enabled on this site.";
         const status = await api.tabs.sendMessage(tab.id, { type: "jd-status" }).catch(() => null);
         if (status?.foreignDark) {
-          $("site-hint").textContent = `Paused: this page is already dark (${status.foreignDark}). Turn that off to use JMS Dark.`;
+          $("site-hint").textContent = status.canTakeOver
+            ? `Paused: ${status.foreignDark} is on. Switch it off and use JMS Dark? (You can switch it back with that app's own toggle.)`
+            : `Paused: this page is already dark (${status.foreignDark}). Turn that off to use JMS Dark.`;
+          if (status.canTakeOver) {
+            takeover.hidden = false;
+            takeover.onclick = async () => {
+              showError(null);
+              const res = await api.tabs.sendMessage(tab.id, { type: "jd-takeover" }).catch(() => null);
+              if (res?.ok) window.close();
+              else showError("Couldn't switch the site's dark theme off. Use its own toggle instead.");
+            };
+          }
         }
       } else {
         $("site-hint").textContent = enabled

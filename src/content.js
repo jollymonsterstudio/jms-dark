@@ -36,6 +36,7 @@
   let themeId = T.DEFAULT_THEME;
   let customThemes = {};
   let foreignDark = null; // why another dark theme is active, or null
+  let takeoverCookie = null; // cookie that switches that theme off, if we know one
 
   const wanted = () => mode === "on" || (mode === "system" && darkQuery.matches);
   const isActive = () => wanted() && !foreignDark;
@@ -48,9 +49,13 @@
    */
   function detectForeignDark() {
     const doc = document;
+    takeoverCookie = null;
     if (doc.querySelector('meta[name="porzelt-darktheme-active"]') ||
         doc.body?.classList.contains("porzelt-darktheme-active")) {
-      return "the site's Dark Theme for Confluence app";
+      const jira = doc.body?.id === "jira";
+      // The app's own toggle stores the user's choice in this cookie and reloads.
+      takeoverCookie = jira ? "com.porzelt.jira.darktheme.active" : "com.porzelt.confluence.darktheme.active";
+      return `the site's Dark Theme for ${jira ? "Jira" : "Confluence"} app`;
     }
     for (const el of [doc.documentElement, doc.body]) {
       if (!el) continue;
@@ -234,10 +239,25 @@
   guardRootClass();
   watchForeignDark();
 
-  // The popup asks whether the theme is paused on this page.
+  /**
+   * Switch the site's own dark-theme app off for this user, exactly as its own
+   * toggle does (same cookie, same 365-day lifetime, path=/), then reload.
+   */
+  function takeOver() {
+    if (!takeoverCookie) return false;
+    const expires = new Date(Date.now() + 365 * 864e5).toUTCString();
+    document.cookie = `${takeoverCookie}=false;expires=${expires};path=/`;
+    setTimeout(() => location.reload(), 50);
+    return true;
+  }
+
+  // The popup asks whether the theme is paused on this page, and can ask us to take over.
   api.runtime.onMessage?.addListener((msg, _sender, reply) => {
-    if (msg?.type === "jd-status" && window === window.top) {
-      reply({ wanted: wanted(), active: isActive(), foreignDark });
+    if (window !== window.top) return;
+    if (msg?.type === "jd-status") {
+      reply({ wanted: wanted(), active: isActive(), foreignDark, canTakeOver: Boolean(takeoverCookie) });
+    } else if (msg?.type === "jd-takeover") {
+      reply({ ok: takeOver() });
     }
   });
 

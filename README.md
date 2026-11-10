@@ -36,6 +36,9 @@ the unzipped folder), or upload the zip to the Chrome Web Store.
 If the page is already dark by other means, JMS Dark pauses itself there and
 the popup says why. This covers the *Dark Theme for Confluence* app being
 switched on, or a user style that puts a `filter` (such as `invert`) on the page.
+When it's the *Dark Theme for Confluence* app (or its Jira twin), the popup offers
+**Use JMS Dark instead**: it switches that app off for you, the same way the
+app's own toggle does, and reloads. Use the app's toggle to switch it back.
 
 The popup also switches between **Dark**, **Follow system** and **Off**, picks
 the colour theme, and lists enabled sites so you can remove them (which also
