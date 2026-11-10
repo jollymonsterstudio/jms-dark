@@ -87,17 +87,28 @@
       if (enabled && permitted) {
         $("site-hint").textContent = "Enabled on this site.";
         const status = await api.tabs.sendMessage(tab.id, { type: "jd-status" }).catch(() => null);
-        if (status?.foreignDark) {
-          $("site-hint").textContent = status.canTakeOver
-            ? `Paused: ${status.foreignDark} is on. Switch it off and use JMS Dark? (You can switch it back with that app's own toggle.)`
+        if (status?.overriding) {
+          $("site-hint").textContent = "Enabled on this site, in place of the site's own dark filter.";
+          takeover.textContent = "Use the site's dark filter instead";
+          takeover.hidden = false;
+          takeover.onclick = async () => {
+            await api.tabs.sendMessage(tab.id, { type: "jd-restore" }).catch(() => null);
+            await render();
+          };
+        } else if (status?.foreignDark) {
+          $("site-hint").textContent =
+            status.kind === "app" ? `Paused: ${status.foreignDark} is on. Switch it off and use JMS Dark? (You can switch it back with that app's own toggle.)`
+            : status.kind === "filter" ? `Paused: the site's own stylesheet inverts this page in dark mode. Cancel that here and use JMS Dark?`
             : `Paused: this page is already dark (${status.foreignDark}). Turn that off to use JMS Dark.`;
           if (status.canTakeOver) {
+            takeover.textContent = "Use JMS Dark instead";
             takeover.hidden = false;
             takeover.onclick = async () => {
               showError(null);
               const res = await api.tabs.sendMessage(tab.id, { type: "jd-takeover" }).catch(() => null);
-              if (res?.ok) window.close();
-              else showError("Couldn't switch the site's dark theme off. Use its own toggle instead.");
+              if (!res?.ok) showError("Couldn't switch the site's dark theme off. Use its own toggle instead.");
+              else if (status.kind === "app") window.close(); // the page reloads
+              else setTimeout(() => render(), 300);
             };
           }
         }

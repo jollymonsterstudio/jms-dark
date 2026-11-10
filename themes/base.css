@@ -9,6 +9,18 @@
  *           confluence.css  Confluence-only screens (scoped to body#com-atlassian-confluence)
  */
 
+/*
+ * The user chose JMS Dark over a site stylesheet that inverts the page (e.g. a
+ * Confluence custom stylesheet using filter: invert() under prefers-color-scheme:
+ * dark). Cancel the page filter and the counter-filters such sheets put on media.
+ */
+html.jd-on.jd-nofilter,
+html.jd-on.jd-nofilter body,
+html.jd-on.jd-nofilter #header,
+html.jd-on.jd-nofilter :is(img, video, picture, canvas, .confluence-embedded-image, .aui-avatar-inner, [style*="background-image"]) {
+  filter: none !important;
+}
+
 html.jd-on {
   --jd-bg: #282c34;          /* page */
   --jd-bg-alt: #21252b;      /* sidebars, headers, menus */

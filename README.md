@@ -39,6 +39,10 @@ switched on, or a user style that puts a `filter` (such as `invert`) on the page
 When it's the *Dark Theme for Confluence* app (or its Jira twin), the popup offers
 **Use JMS Dark instead**: it switches that app off for you, the same way the
 app's own toggle does, and reloads. Use the app's toggle to switch it back.
+When it's a site stylesheet that inverts the page in dark mode (for example a
+Confluence custom stylesheet using `filter: invert()` under
+`prefers-color-scheme: dark`), the same button cancels that filter on that site
+while JMS Dark is on; the popup's *Use the site's dark filter instead* undoes it.
 
 The popup also switches between **Dark**, **Follow system** and **Off**, picks
 the colour theme, and lists enabled sites so you can remove them (which also
@@ -133,6 +137,9 @@ JMS Dark collects no personal or usage data. Nothing leaves your browser.
   checks whether the page is already dark (another dark-theme app or a page
   filter). It doesn't read, store or send page content, form input or
   credentials.
+- **Per-site override list.** If you choose JMS Dark over a site's own
+  page-inverting stylesheet, that site's origin is added to the local settings
+  so the choice sticks.
 - **One cookie, only on request.** *Use JMS Dark instead* sets the cookie that
   the site's own *Dark Theme for Confluence* (or Jira) app uses for its on/off
   toggle, on that site, and only when you click the button.

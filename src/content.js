@@ -23,6 +23,8 @@
   window.__jmsDarkLoaded = true;
 
   const CLASS_ON = "jd-on";
+  const CLASS_NOFILTER = "jd-nofilter"; // cancels a site's own page-inverting filter
+  const OVERRIDE_KEY = "overrideFilter"; // origins where the user chose JMS Dark over the site's filter
   const EDITOR_STYLE_ID = "jd-editor-style";
   const PALETTE_STYLE_ID = "jd-palette";
   const MODE_KEY = "mode"; // "on" | "off" | "system"
@@ -37,6 +39,8 @@
   let customThemes = {};
   let foreignDark = null; // why another dark theme is active, or null
   let takeoverCookie = null; // cookie that switches that theme off, if we know one
+  let pageFilter = false; // the foreign dark theme is a CSS filter we can cancel
+  let overrideFilter = false; // user chose to cancel this site's filter
 
   const wanted = () => mode === "on" || (mode === "system" && darkQuery.matches);
   const isActive = () => wanted() && !foreignDark;
@@ -50,6 +54,7 @@
   function detectForeignDark() {
     const doc = document;
     takeoverCookie = null;
+    pageFilter = false;
     if (doc.querySelector('meta[name="porzelt-darktheme-active"]') ||
         doc.body?.classList.contains("porzelt-darktheme-active")) {
       const jira = doc.body?.id === "jira";
@@ -57,10 +62,15 @@
       takeoverCookie = jira ? "com.porzelt.jira.darktheme.active" : "com.porzelt.confluence.darktheme.active";
       return `the site's Dark Theme for ${jira ? "Jira" : "Confluence"} app`;
     }
+    // When the user overrides the filter our own CSS cancels it, so don't measure.
+    if (overrideFilter) return null;
     for (const el of [doc.documentElement, doc.body]) {
       if (!el) continue;
       const f = getComputedStyle(el).filter;
-      if (f && f !== "none") return "a page filter (" + f + ")";
+      if (f && f !== "none") {
+        pageFilter = true;
+        return "a page filter (" + f + ")";
+      }
     }
     return null;
   }
@@ -146,6 +156,8 @@
     const root = doc.documentElement;
     if (!root) return;
     if (root.classList.contains(CLASS_ON) !== isActive()) root.classList.toggle(CLASS_ON, isActive());
+    const nofilter = isActive() && overrideFilter;
+    if (root.classList.contains(CLASS_NOFILTER) !== nofilter) root.classList.toggle(CLASS_NOFILTER, nofilter);
   }
 
   // At document_start <html> may not exist yet, and page scripts sometimes
@@ -232,7 +244,11 @@
     mode = m === "on" || m === "off" || m === "system" ? m : DEFAULT_MODE;
     themeId = typeof data?.[T.KEYS.theme] === "string" ? data[T.KEYS.theme] : T.DEFAULT_THEME;
     customThemes = data?.[T.KEYS.custom] ?? {};
+    const overrides = data?.[OVERRIDE_KEY];
+    overrideFilter = Array.isArray(overrides) && overrides.includes(location.origin);
   }
+
+  const SETTINGS = [MODE_KEY, T.KEYS.theme, T.KEYS.custom, OVERRIDE_KEY];
 
   // 1. Optimistic: dark immediately (One Dark defaults from base.css).
   applyClass();
@@ -243,7 +259,18 @@
    * Switch the site's own dark-theme app off for this user, exactly as its own
    * toggle does (same cookie, same 365-day lifetime, path=/), then reload.
    */
+  async function setOverride(on) {
+    const data = await api.storage.local.get(OVERRIDE_KEY);
+    const list = (Array.isArray(data[OVERRIDE_KEY]) ? data[OVERRIDE_KEY] : []).filter((o) => o !== location.origin);
+    if (on) list.push(location.origin);
+    await api.storage.local.set({ [OVERRIDE_KEY]: list }); // onChanged re-applies in every frame
+  }
+
   function takeOver() {
+    if (pageFilter) {
+      setOverride(true);
+      return true;
+    }
     if (!takeoverCookie) return false;
     const expires = new Date(Date.now() + 365 * 864e5).toUTCString();
     document.cookie = `${takeoverCookie}=false;expires=${expires};path=/`;
@@ -255,24 +282,31 @@
   api.runtime.onMessage?.addListener((msg, _sender, reply) => {
     if (window !== window.top) return;
     if (msg?.type === "jd-status") {
-      reply({ wanted: wanted(), active: isActive(), foreignDark, canTakeOver: Boolean(takeoverCookie) });
+      reply({ wanted: wanted(), active: isActive(), foreignDark,
+        canTakeOver: Boolean(takeoverCookie) || pageFilter, kind: pageFilter ? "filter" : takeoverCookie ? "app" : null,
+        overriding: overrideFilter });
     } else if (msg?.type === "jd-takeover") {
       reply({ ok: takeOver() });
+    } else if (msg?.type === "jd-restore") {
+      setOverride(false).then(() => reply({ ok: true }));
+      return true;
     }
   });
 
   // 2. Correct mode and palette from storage.
-  api.storage.local.get([MODE_KEY, T.KEYS.theme, T.KEYS.custom]).then((data) => {
+  api.storage.local.get(SETTINGS).then((data) => {
     readSettings(data);
+    checkForeignDark();
     update();
   }, update);
 
   // 3. React to popup / options changes and OS theme changes live.
   api.storage.onChanged.addListener((changes, area) => {
     if (area !== "local") return;
-    if (!(MODE_KEY in changes) && !(T.KEYS.theme in changes) && !(T.KEYS.custom in changes)) return;
-    api.storage.local.get([MODE_KEY, T.KEYS.theme, T.KEYS.custom]).then((data) => {
+    if (!SETTINGS.some((k) => k in changes)) return;
+    api.storage.local.get(SETTINGS).then((data) => {
       readSettings(data);
+      checkForeignDark();
       update();
     });
   });
