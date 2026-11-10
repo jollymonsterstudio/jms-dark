@@ -113,9 +113,33 @@ issues and PRs welcome.
 | `themes/confluence.css` | Confluence screens, scoped to `body#com-atlassian-confluence` |
 
 Every rule is scoped under `html.jd-on`, so switching the theme off just
-removes that class. The extension collects no data and makes no network
-requests; it stores only the mode, theme choice, custom themes and the list of enabled
-sites, locally.
+removes that class. See [Privacy](#privacy) for what is stored.
+
+## Privacy
+
+JMS Dark collects no personal or usage data. Nothing leaves your browser.
+
+- **No network requests.** The extension doesn't contact any server, ours or
+  anyone else's, and has no analytics, tracking or remote code. All of its
+  code and styles ship inside the package.
+- **Stored locally only.** It keeps these settings in your browser's extension
+  storage: the mode (Dark / Follow system / Off), the chosen theme, any custom
+  themes you create, and the list of sites you enabled. They are not synced
+  or sent anywhere, and are removed when you uninstall the extension.
+- **Site access only where you allow it.** The extension has no site access at
+  install. It asks for access to one site at a time, only when you click
+  *Enable on this site*, and gives it up when you remove the site.
+- **Page content stays put.** On enabled sites it adds its stylesheet and
+  checks whether the page is already dark (another dark-theme app or a page
+  filter). It doesn't read, store or send page content, form input or
+  credentials.
+- **One cookie, only on request.** *Use JMS Dark instead* sets the cookie that
+  the site's own *Dark Theme for Confluence* (or Jira) app uses for its on/off
+  toggle, on that site, and only when you click the button.
+- **Theme export** copies the theme's JSON to your clipboard when you click
+  *Export JSON*; nothing else is read from or written to the clipboard.
+
+Questions: [open an issue](https://github.com/jollymonsterstudio/jms-dark/issues).
 
 ## Develop
 
