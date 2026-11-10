@@ -17,6 +17,14 @@ Signed `.xpi` files are also attached to some
 [Releases](https://github.com/jollymonsterstudio/jms-dark/releases); open one in
 Firefox (or `about:addons` → gear → *Install Add-on From File…*).
 
+### Chrome / Edge
+
+The same code runs in Chrome and Edge (121+). Build the package with
+`python tools/build_chrome.py`, which writes `dist/jms-dark-<version>-chrome.zip`
+with a Chrome manifest (service-worker background, no Firefox settings). Load
+it unpacked from `chrome://extensions` (Developer mode → *Load unpacked*, using
+the unzipped folder), or upload the zip to the Chrome Web Store.
+
 ## Use
 
 1. Open your Jira or Confluence site.
@@ -24,6 +32,10 @@ Firefox (or `about:addons` → gear → *Install Add-on From File…*).
    access when Firefox asks. The extension only ever gets access to sites you
    enable this way.
 3. The page turns dark immediately; future visits are themed from the first paint.
+
+If the page is already dark by other means, JMS Dark pauses itself there and
+the popup says why. This covers the *Dark Theme for Confluence* app being
+switched on, or a user style that puts a `filter` (such as `invert`) on the page.
 
 The popup also switches between **Dark**, **Follow system** and **Off**, picks
 the colour theme, and lists enabled sites so you can remove them (which also

@@ -44,7 +44,7 @@
     // background script finishes the job (save site, register, theme the tab)
     // when the grant arrives. Tell it what we're asking for first — without
     // awaiting, because permissions.request must run inside the click gesture.
-    api.runtime.sendMessage({ type: "pending", origin: tab.origin, tabId: tab.id });
+    api.runtime.sendMessage({ type: "pending", origin: tab.origin, tabId: tab.id }).catch(() => {});
     const granted = await api.permissions.request({ origins: [patternFor(tab.origin)] });
     if (!granted) {
       showError("Permission was not granted, so the theme can't run on this site.");
@@ -83,10 +83,14 @@
       const permitted = enabled && (await api.permissions.contains({ origins: [patternFor(tab.origin)] }));
       if (enabled && permitted) {
         $("site-hint").textContent = "Enabled on this site.";
+        const status = await api.tabs.sendMessage(tab.id, { type: "jd-status" }).catch(() => null);
+        if (status?.foreignDark) {
+          $("site-hint").textContent = `Paused: this page is already dark (${status.foreignDark}). Turn that off to use JMS Dark.`;
+        }
       } else {
         $("site-hint").textContent = enabled
           ? "Site is saved but its permission was revoked."
-          : "Firefox will ask for access to this site only.";
+          : "Your browser will ask for access to this site only.";
         btn.textContent = enabled ? "Grant access" : "Enable on this site";
         btn.hidden = false;
         btn.onclick = () => enableCurrent().catch((e) => showError(String(e?.message ?? e)));

@@ -9,6 +9,10 @@
  * Rich-text editors (TinyMCE in Jira and Confluence) live in about:blank iframes
  * whose documents are rebuilt by the editor after load, which drops any styles
  * the browser injected. The top frame therefore re-styles those iframes itself.
+ *
+ * If the page is already dark by other means (the site's own dark-theme app, or
+ * a user style that inverts the whole page), the theme stands down: two dark
+ * themes on top of each other, or an inverted dark theme, end up unreadable.
  */
 (() => {
   "use strict";
@@ -31,8 +35,49 @@
   let mode = DEFAULT_MODE;
   let themeId = T.DEFAULT_THEME;
   let customThemes = {};
+  let foreignDark = null; // why another dark theme is active, or null
 
-  const isActive = () => mode === "on" || (mode === "system" && darkQuery.matches);
+  const wanted = () => mode === "on" || (mode === "system" && darkQuery.matches);
+  const isActive = () => wanted() && !foreignDark;
+
+  /**
+   * Another dark theme already on this page:
+   * - "Dark Theme for Confluence" (Porzelt): server adds <meta name="porzelt-darktheme-active">
+   *   and body.porzelt-darktheme-active when the user has it switched on;
+   * - anything that applies a CSS filter (e.g. invert) to <html> or <body>.
+   */
+  function detectForeignDark() {
+    const doc = document;
+    if (doc.querySelector('meta[name="porzelt-darktheme-active"]') ||
+        doc.body?.classList.contains("porzelt-darktheme-active")) {
+      return "the site's Dark Theme for Confluence app";
+    }
+    for (const el of [doc.documentElement, doc.body]) {
+      if (!el) continue;
+      const f = getComputedStyle(el).filter;
+      if (f && f !== "none") return "a page filter (" + f + ")";
+    }
+    return null;
+  }
+
+  function checkForeignDark() {
+    const was = foreignDark;
+    foreignDark = detectForeignDark();
+    if (foreignDark !== was) update();
+  }
+
+  function watchForeignDark() {
+    checkForeignDark();
+    document.addEventListener("DOMContentLoaded", checkForeignDark, { once: true });
+    window.addEventListener("load", checkForeignDark, { once: true });
+    [1000, 3000].forEach((ms) => setTimeout(checkForeignDark, ms));
+    const observeBody = () => {
+      if (!document.body) return;
+      new MutationObserver(checkForeignDark).observe(document.body, { attributes: true, attributeFilter: ["class", "style"] });
+    };
+    if (document.body) observeBody();
+    else document.addEventListener("DOMContentLoaded", observeBody, { once: true });
+  }
   const colors = () => T.resolve(themeId, customThemes);
 
   // Styles for the editable body inside TinyMCE iframes. That is a separate
@@ -102,7 +147,8 @@
   // rewrite html.className. Re-apply in both cases.
   function guardRootClass() {
     const watchRoot = (root) =>
-      new MutationObserver(() => applyClass()).observe(root, { attributes: true, attributeFilter: ["class"] });
+      new MutationObserver(() => { applyClass(); checkForeignDark(); })
+        .observe(root, { attributes: true, attributeFilter: ["class", "style"] });
     if (document.documentElement) {
       watchRoot(document.documentElement);
       return;
@@ -186,6 +232,14 @@
   // 1. Optimistic: dark immediately (One Dark defaults from base.css).
   applyClass();
   guardRootClass();
+  watchForeignDark();
+
+  // The popup asks whether the theme is paused on this page.
+  api.runtime.onMessage?.addListener((msg, _sender, reply) => {
+    if (msg?.type === "jd-status" && window === window.top) {
+      reply({ wanted: wanted(), active: isActive(), foreignDark });
+    }
+  });
 
   // 2. Correct mode and palette from storage.
   api.storage.local.get([MODE_KEY, T.KEYS.theme, T.KEYS.custom]).then((data) => {

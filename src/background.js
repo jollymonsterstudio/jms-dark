@@ -4,7 +4,7 @@
  * Keeps one dynamic content-script registration covering every site the user
  * has enabled (stored as origins under `sites`) and still holds a host
  * permission for. Re-registered on startup, on storage changes and whenever
- * the user grants or revokes a permission in about:addons.
+ * the user grants or revokes a permission in the browser's add-on settings.
  */
 "use strict";
 
@@ -117,22 +117,30 @@ api.permissions.onAdded.addListener((perms) => {
   }
 });
 
-api.runtime.onMessage.addListener((msg) => {
+// Replies go through sendResponse (return true keeps the channel open):
+// Chrome ignores a Promise returned from the listener.
+api.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+  let work;
   switch (msg?.type) {
     case "pending":
       pending = { origin: msg.origin, tabId: msg.tabId };
       applied.delete(msg.tabId);
-      return undefined;
+      return false;
     case "granted":
       pending = null;
-      return completeGrant(msg.origin, msg.tabId).then(() => ({ ok: true }));
+      work = completeGrant(msg.origin, msg.tabId);
+      break;
     case "sync":
-      return sync().then(() => ({ ok: true }));
+      work = sync();
+      break;
     case "uninject":
-      return removeFromTab(msg.tabId).then(() => ({ ok: true }));
+      work = removeFromTab(msg.tabId);
+      break;
     default:
-      return undefined;
+      return false;
   }
+  work.then(() => sendResponse({ ok: true }), (e) => sendResponse({ ok: false, error: String(e?.message ?? e) }));
+  return true;
 });
 
 api.storage.onChanged.addListener((changes, area) => {
