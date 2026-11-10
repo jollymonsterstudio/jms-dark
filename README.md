@@ -9,10 +9,13 @@ against **Jira 8.x** and **Confluence 7.x**.
 
 ## Install
 
-Download the signed `.xpi` from the
-[Releases](https://github.com/jollymonsterstudio/jms-dark/releases) page and
-open it in Firefox (or `about:addons` → gear → *Install Add-on From File…*).
+Install it from Firefox Add-ons:
+**[addons.mozilla.org/firefox/addon/jms-dark](https://addons.mozilla.org/firefox/addon/jms-dark/)**.
 Firefox 140+ on desktop, 142+ on Android.
+
+Signed `.xpi` files are also attached to some
+[Releases](https://github.com/jollymonsterstudio/jms-dark/releases); open one in
+Firefox (or `about:addons` → gear → *Install Add-on From File…*).
 
 ## Use
 
