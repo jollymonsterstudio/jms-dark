@@ -19,7 +19,12 @@ Firefox (or `about:addons` → gear → *Install Add-on From File…*).
 
 ### Chrome / Edge
 
-The same code runs in Chrome and Edge (121+). Build the package with
+Install it from the Chrome Web Store:
+**[JMS Dark for Jira & Confluence](https://chromewebstore.google.com/detail/jms-dark-for-jira-conflue/dclkgagjlophpmmmjhpmkhlmedkfgckn)**.
+Chrome 121+. In Edge, allow extensions from other stores when prompted, then
+install from the same page.
+
+To build it yourself, the same code runs in Chrome and Edge (121+). Build the package with
 `python tools/build_chrome.py`, which writes `dist/jms-dark-<version>-chrome.zip`
 with a Chrome manifest (service-worker background, no Firefox settings). Load
 it unpacked from `chrome://extensions` (Developer mode → *Load unpacked*, using
