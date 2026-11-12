@@ -361,3 +361,96 @@ html.jd-on #com-atlassian-confluence #footer-logo {
 html.jd-on #com-atlassian-confluence #footer-logo a {
   filter: invert(1) brightness(0.75);
 }
+
+/* Notifications / tasks panel (Workbox "mywork" miniview, loaded in an iframe) */
+html.jd-on .miniview-page,
+html.jd-on #mw-container .card,
+html.jd-on #mw-container .mw-drilldown,
+html.jd-on #mw-container .mw-notifications,
+html.jd-on #mw-container .mw-notification-drilldown,
+html.jd-on #mw-container .mw-tasks,
+html.jd-on #mw-container .mw-tasks-list,
+html.jd-on #mw-container .mw-loading,
+html.jd-on .mw-loading-more,
+html.jd-on .expandingArea {
+  background-color: var(--jd-bg-alt) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #mw-container .mw-drilldown-top,
+html.jd-on #mw-container .mw-related-content,
+html.jd-on #mw-container .mw-tasks .task.completed,
+html.jd-on #mw-container .mw-tasks.completed .entire-task,
+html.jd-on #mw-container .toolbar-trigger.on {
+  background-color: var(--jd-surface) !important;
+}
+html.jd-on #mw-container .mw-notification-item,
+html.jd-on #mw-container li.task,
+html.jd-on #mw-container li.empty-task {
+  border-left-color: transparent;
+  border-top-color: transparent !important;
+  border-bottom-color: var(--jd-border) !important;
+}
+html.jd-on #mw-container .mw-notification-item.focused,
+html.jd-on #mw-container .mw-drilldown-list.focused {
+  border-left-color: var(--jd-blue) !important;
+}
+html.jd-on #mw-container .mw-notification-item:hover,
+html.jd-on #mw-container .mw-show-more:hover,
+html.jd-on #mw-container li.task:hover {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on #mw-container .mw-header,
+html.jd-on #mw-container .mw-drilldown-header,
+html.jd-on #mw-container .mw-drilldown-list,
+html.jd-on #mw-container .mw-footer,
+html.jd-on #mw-container .mw-taskdetail-header,
+html.jd-on .mw-no-notifications .subheading {
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #mw-container h1,
+html.jd-on #mw-container h2,
+html.jd-on #mw-container .mw-notification-title,
+html.jd-on #mw-container .mw-no-notifications > h1,
+html.jd-on #mw-container .mw-taskdetail-notes,
+html.jd-on #mw-container input.mw-taskdetail-title.readonly {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on #mw-container .mw-notification-item,
+html.jd-on #mw-container .mw-drilldown-item .mw-drilldown-excerpt,
+html.jd-on #mw-container .mw-drilldown-item .mw-drilldown-body {
+  color: var(--jd-text) !important;
+}
+html.jd-on #mw-container .mw-notification-time,
+html.jd-on #mw-container .mw-drilldown-item .mw-drilldown-title,
+html.jd-on #mw-container .mw-drilldown-actions,
+html.jd-on #mw-container .drilldown-action-text,
+html.jd-on #mw-container .back-arrow,
+html.jd-on #mw-container li.task .status,
+html.jd-on #mw-container .mw-taskdetail-container h1,
+html.jd-on #mw-container .category-label,
+html.jd-on #mw-container .mw-no-notifications > p,
+html.jd-on #mw-container .mw-no-tasks > p,
+html.jd-on .mw-no-notifications ul {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on #mw-container a,
+html.jd-on #mw-container .drilldown-title,
+html.jd-on #mw-container .mw-drilldown-top .mw-drilldown-back {
+  color: var(--jd-blue) !important;
+}
+html.jd-on #mw-container .mw-drilldown-item .mw-drilldown-excerpt,
+html.jd-on #mw-container blockquote {
+  border-left-color: var(--jd-border-hi) !important;
+}
+html.jd-on #mw-container input[type="text"],
+html.jd-on #mw-container textarea,
+html.jd-on #mw-container .mw-taskdetail-notes,
+html.jd-on #mw-container input:hover,
+html.jd-on #mw-container textarea:hover {
+  background-color: var(--jd-bg-deep) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #mw-container .mw-drilldown-item .mw-drilldown-excerpt {
+  background-color: var(--jd-surface) !important;
+}
