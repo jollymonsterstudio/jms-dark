@@ -625,3 +625,83 @@ html.jd-on #jira .attachment-date,
 html.jd-on #jira .attachment-author {
   color: var(--jd-text-dim) !important;
 }
+
+/* Header quick search dropdown */
+html.jd-on .quicksearch-dropdown {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on .quicksearch-dropdown :is(.quick-search-item-title, .quick-search-result-item a) {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .quicksearch-dropdown :is(.quick-search-section-heading, .quick-search-item-subtitle, .quick-search-subtitle-container) {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on .quicksearch-dropdown :is(.quick-search-result-item, .quick-search-result-item a):is(:hover, :focus, .active, .aui-dropdown2-active),
+html.jd-on .quicksearch-dropdown .quick-search-result-item:focus-within {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on .quicksearch-dropdown :is(.quick-search-result-group, hr) {
+  border-color: var(--jd-border) !important;
+}
+
+/* Issue tables inside dashboard gadgets (filter results, assigned to me) */
+html.jd-on issuetable-web-component table.issue-table,
+html.jd-on issuetable-web-component table.issue-table :is(tr, td) {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on issuetable-web-component table.issue-table tr:hover > td {
+  background-color: var(--jd-hover) !important;
+}
+
+/* Activity stream gadget (its own iframe) */
+html.jd-on #activity-stream :is(.activity-item-summary, .activity-item-description, .user-content, .activity-item-info) {
+  color: var(--jd-text) !important;
+}
+
+/* Manage filters: vertical tabs */
+html.jd-on ul.vertical.tabs li a,
+html.jd-on ul.vertical.tabs li a strong {
+  color: var(--jd-text) !important;
+}
+html.jd-on ul.vertical.tabs li.active a,
+html.jd-on ul.vertical.tabs li.active a strong {
+  color: var(--jd-text-hi) !important;
+  background-color: var(--jd-select) !important;
+}
+
+/* "Time Between Statuses" app page */
+html.jd-on body.our-body #header,
+html.jd-on body.our-body #ui-header .main-panel-inner,
+html.jd-on body.our-body .main-panel-inner,
+html.jd-on body.our-body #grid-head,
+html.jd-on body.our-body #grid-head th {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on body.our-body .header__logo :is(h3, b, a) {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on body.our-body .select2-chosen,
+html.jd-on body.our-body td.summary_list a {
+  color: var(--jd-blue) !important;
+}
+html.jd-on body.our-body .select2-chosen {
+  color: var(--jd-text) !important;
+}
+html.jd-on body.our-body td.status_list [class*="status-block"] {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border-hi) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on issuetable-web-component table.issue-table th,
+html.jd-on issuetable-web-component table.issue-table th.active,
+html.jd-on table.issue-table > thead th.active {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-text-hi) !important;
+  border-color: var(--jd-border) !important;
+}

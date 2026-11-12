@@ -487,3 +487,70 @@ html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="SearchCont
 html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] .aui-iconfont-cross {
   color: var(--jd-text-dim) !important;
 }
+
+/* Create dialog body and footer links */
+html.jd-on #create-dialog .dialog-page-body,
+html.jd-on #create-dialog .dialog-page-body > * {
+  background-color: var(--jd-bg-alt) !important;
+}
+html.jd-on #create-dialog .dialog-button-panel a.button-panel-link {
+  color: var(--jd-blue) !important;
+}
+
+/* @mentions of other users */
+html.jd-on #com-atlassian-confluence a.confluence-userlink.user-mention:not(.current-user-mention) {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-blue) !important;
+}
+
+/* Watch dialog */
+html.jd-on .cw-dialog label,
+html.jd-on .cw-tooltip {
+  color: var(--jd-text) !important;
+}
+
+/* Page information panels */
+html.jd-on #com-atlassian-confluence .basicPanelContainer {
+  border-color: var(--jd-border) !important;
+}
+html.jd-on #com-atlassian-confluence .basicPanelTitle {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-text-hi) !important;
+  border-color: var(--jd-border) !important;
+}
+
+/* Compare versions */
+html.jd-on #com-atlassian-confluence .diff-menu .page-version,
+html.jd-on #com-atlassian-confluence .diff-navigation a,
+html.jd-on #com-atlassian-confluence table.diff-macro,
+html.jd-on #com-atlassian-confluence table.diff-macro :is(th, td) {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+
+/* People directory */
+html.jd-on .profile-macro a.email {
+  color: var(--jd-blue) !important;
+}
+
+/* Team Calendars (FullCalendar) */
+html.jd-on .fc-widget-header,
+html.jd-on .fc-day-header {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-text-hi) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on .fc-widget-content {
+  border-color: var(--jd-border) !important;
+}
+html.jd-on .fc-day-number {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on .fc-today,
+html.jd-on .fc-state-highlight {
+  background-color: var(--jd-select) !important;
+}
+html.jd-on .plugin-calendar .no-subcalendars-msg {
+  color: var(--jd-text-dim) !important;
+}

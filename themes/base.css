@@ -17,6 +17,7 @@
 html.jd-on.jd-nofilter,
 html.jd-on.jd-nofilter body,
 html.jd-on.jd-nofilter #header,
+html.jd-on.jd-nofilter :is(.aui-dropdown2, .aui-layer, .aui-inline-dialog, .aui-dialog2),
 html.jd-on.jd-nofilter :is(img, video, picture, canvas, .confluence-embedded-image, .aui-avatar-inner, [style*="background-image"]) {
   filter: none !important;
 }
@@ -415,6 +416,20 @@ html.jd-on .aui-navgroup-horizontal,
 html.jd-on .aui-navgroup-horizontal .aui-navgroup-inner {
   background-color: var(--jd-bg-alt) !important;
   border-color: var(--jd-border) !important;
+}
+html.jd-on .aui-navgroup-horizontal .aui-nav > li > a {
+  color: var(--jd-text) !important;
+}
+html.jd-on .aui-navgroup-horizontal .aui-nav > li > a:hover {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on .aui-navgroup-horizontal .aui-nav-selected > a {
+  color: var(--jd-blue) !important;
+}
+
+/* Footer "ATLASSIAN" logo strip, also on error pages without the app's body id */
+html.jd-on #footer-logo {
+  background-color: transparent !important;
 }
 
 html.jd-on .aui-tabs > .tabs-menu,
