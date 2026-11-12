@@ -211,3 +211,24 @@ html.jd-on .codeHeader *,
 html.jd-on .panelHeader * {
   color: var(--jd-text-hi) !important;
 }
+
+/* Inline text colours from the editor: black / near-black would vanish, pure red is harsh */
+html.jd-on :is(#main-content, .wiki-content, #tinymce, .user-content-block, .description, .action-body) :is(
+  [style*="color: rgb(0,0,0)"], [style*="color: rgb(0, 0, 0)"], [style*="color:rgb(0,0,0)"],
+  [style*="color: #000000" i], [style*="color:#000000" i], [style*="color: #000;" i], [style*="color:#000;" i],
+  [style*="color: black"], [style*="color:black"],
+  [style*="color: rgb(23,43,77)"], [style*="color: rgb(23, 43, 77)"], [style*="color: #172b4d" i],
+  [style*="color: rgb(51,51,51)"], [style*="color: rgb(51, 51, 51)"], [style*="color: #333333" i], [style*="color: #333;" i]) {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on :is(#main-content, .wiki-content, #tinymce, .user-content-block, .description, .action-body) :is(
+  [style*="color: rgb(255,0,0)"], [style*="color: rgb(255, 0, 0)"], [style*="color: #ff0000" i], [style*="color:#ff0000" i], [style*="color: red"]) {
+  color: var(--jd-red) !important;
+}
+
+/* Date lozenges (<time class="date-past/date-future">) */
+html.jd-on time:is(.date-past, .date-future, .date-upcoming) {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text-hi) !important;
+}

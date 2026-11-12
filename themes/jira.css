@@ -642,7 +642,10 @@ html.jd-on .quicksearch-dropdown :is(.quick-search-result-item, .quick-search-re
 html.jd-on .quicksearch-dropdown .quick-search-result-item:focus-within {
   background-color: var(--jd-hover) !important;
 }
-html.jd-on .quicksearch-dropdown :is(.quick-search-result-group, hr) {
+html.jd-on .quicksearch-dropdown .quick-search-active {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on .quicksearch-dropdown :is(.quick-search-result-group, .quick-search-section-heading, hr) {
   border-color: var(--jd-border) !important;
 }
 
@@ -744,4 +747,43 @@ html.jd-on .iic-widget__issue-type-selector .aui-button,
 html.jd-on .iic-widget__issue-type-selector__trigger {
   background-color: transparent !important;
   color: var(--jd-text) !important;
+}
+
+/* Issue list (split view): inline create bar */
+html.jd-on .inline-issue-create-container {
+  background-color: var(--jd-bg-alt) !important;
+  border-color: var(--jd-border) !important;
+}
+
+/* Module header "+" / "..." buttons */
+html.jd-on #jira ul.ops {
+  background-color: transparent !important;
+}
+
+/* Issue links: row dividers */
+html.jd-on #jira .links-list dd,
+html.jd-on #jira #show-more-links {
+  border-color: var(--jd-border) !important;
+}
+
+/* Epic issue: "Issues in epic" table */
+html.jd-on #ghx-issues-in-epic-table,
+html.jd-on #ghx-issues-in-epic-table tr,
+html.jd-on #ghx-issues-in-epic-table td {
+  background-color: var(--jd-bg) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on #ghx-issues-in-epic-table tr:hover td {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on #ghx-issues-in-epic-table .ghx-summary,
+html.jd-on #ghx-issues-in-epic-table .ghx-summary * {
+  color: var(--jd-text-hi) !important;
+}
+
+/* Attachment drop zone, shown while dragging a file */
+html.jd-on .attachments-drop-zone__dragover-info {
+  background-color: var(--jd-surface) !important;
+  color: var(--jd-text-hi) !important;
 }
