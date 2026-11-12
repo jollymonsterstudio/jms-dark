@@ -705,3 +705,43 @@ html.jd-on table.issue-table > thead th.active {
   color: var(--jd-text-hi) !important;
   border-color: var(--jd-border) !important;
 }
+
+/* Backlog: expanded sub-task group well */
+html.jd-on .ghx-backlog-group .ghx-subtask-group,
+html.jd-on .ghx-subtask-group {
+  background-color: var(--jd-bg-deep) !important;
+}
+
+/* Inline "Create issue" (backlog, issue navigator list) */
+html.jd-on .iic,
+html.jd-on .iic-trigger,
+html.jd-on .iic-widget,
+html.jd-on .iic-widget__form {
+  background-color: var(--jd-surface) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text) !important;
+}
+html.jd-on .iic-trigger .aui-button,
+html.jd-on .iic-widget__description {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on .iic-trigger .aui-button:hover {
+  background-color: var(--jd-hover) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .iic-widget__summary {
+  background-color: var(--jd-bg-deep) !important;
+  border-color: var(--jd-border) !important;
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on .iic-widget__summary:focus {
+  border-color: var(--jd-blue) !important;
+}
+html.jd-on .iic-widget__summary::placeholder {
+  color: var(--jd-text-faint) !important;
+}
+html.jd-on .iic-widget__issue-type-selector .aui-button,
+html.jd-on .iic-widget__issue-type-selector__trigger {
+  background-color: transparent !important;
+  color: var(--jd-text) !important;
+}

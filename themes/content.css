@@ -70,6 +70,15 @@ html.jd-on .highlight-yellow, html.jd-on [data-highlight-colour="yellow"] { back
 html.jd-on .highlight-red,    html.jd-on [data-highlight-colour="red"]    { background-color: color-mix(in srgb, var(--jd-red) 22%, var(--jd-bg)) !important; }
 html.jd-on .highlight-purple, html.jd-on [data-highlight-colour="purple"] { background-color: color-mix(in srgb, var(--jd-purple) 22%, var(--jd-bg)) !important; }
 html.jd-on .highlight-teal,   html.jd-on [data-highlight-colour="teal"]   { background-color: color-mix(in srgb, var(--jd-cyan) 22%, var(--jd-bg)) !important; }
+/* Newer editors store the hex instead of a name (class "highlight-#e3fcef").
+   Unknown hexes fall back to a neutral panel; the stock palette keeps its hue. */
+html.jd-on [data-highlight-colour^="#"] { background-color: var(--jd-surface) !important; }
+html.jd-on :is([data-highlight-colour="#deebff" i], [data-highlight-colour="#b3d4ff" i], [data-highlight-colour="#4c9aff" i]) { background-color: color-mix(in srgb, var(--jd-blue) 22%, var(--jd-bg)) !important; }
+html.jd-on :is([data-highlight-colour="#e3fcef" i], [data-highlight-colour="#abf5d1" i], [data-highlight-colour="#57d9a3" i]) { background-color: color-mix(in srgb, var(--jd-green) 22%, var(--jd-bg)) !important; }
+html.jd-on :is([data-highlight-colour="#fffae6" i], [data-highlight-colour="#fff0b3" i], [data-highlight-colour="#ffe380" i]) { background-color: color-mix(in srgb, var(--jd-yellow) 22%, var(--jd-bg)) !important; }
+html.jd-on :is([data-highlight-colour="#ffebe6" i], [data-highlight-colour="#ffbdad" i], [data-highlight-colour="#ff8f73" i]) { background-color: color-mix(in srgb, var(--jd-red) 22%, var(--jd-bg)) !important; }
+html.jd-on :is([data-highlight-colour="#eae6ff" i], [data-highlight-colour="#c0b6f2" i], [data-highlight-colour="#998dd9" i]) { background-color: color-mix(in srgb, var(--jd-purple) 22%, var(--jd-bg)) !important; }
+html.jd-on :is([data-highlight-colour="#e6fcff" i], [data-highlight-colour="#b3f5ff" i], [data-highlight-colour="#79e2f2" i]) { background-color: color-mix(in srgb, var(--jd-cyan) 22%, var(--jd-bg)) !important; }
 
 /* ===================== Information macros ===================== */
 

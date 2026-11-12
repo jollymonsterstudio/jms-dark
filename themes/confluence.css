@@ -390,6 +390,12 @@ html.jd-on #mw-container li.empty-task {
   border-top-color: transparent !important;
   border-bottom-color: var(--jd-border) !important;
 }
+html.jd-on #mw-container .mw-notification-item.unread {
+  background-color: color-mix(in srgb, var(--jd-yellow) 14%, var(--jd-bg-alt)) !important;
+}
+html.jd-on #mw-container .mw-notification-item.unread:hover {
+  background-color: color-mix(in srgb, var(--jd-yellow) 20%, var(--jd-hover)) !important;
+}
 html.jd-on #mw-container .mw-notification-item.focused,
 html.jd-on #mw-container .mw-drilldown-list.focused {
   border-left-color: var(--jd-blue) !important;
@@ -486,6 +492,17 @@ html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="SearchCont
 html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="SearchContainer_input-icon"],
 html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] .aui-iconfont-cross {
   color: var(--jd-text-dim) !important;
+}
+
+/* Search drawer, empty query: recently visited pages and spaces */
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] :is([class*="RecentContentItem_result-item-title"], [class*="RecentSpaceItem_recent-space-title"]) {
+  color: var(--jd-blue) !important;
+}
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="RecentContentItem_result-item-metadata"] {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] .search-drawer-list-item:hover :is([class*="RecentContentItem_result-item-title"], [class*="RecentSpaceItem_recent-space-title"]) {
+  color: var(--jd-blue-hi) !important;
 }
 
 /* Create dialog body and footer links */
