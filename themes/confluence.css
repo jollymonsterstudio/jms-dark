@@ -454,3 +454,36 @@ html.jd-on #mw-container textarea:hover {
 html.jd-on #mw-container .mw-drilldown-item .mw-drilldown-excerpt {
   background-color: var(--jd-surface) !important;
 }
+
+/* Search drawer (React; CSS-module class names carry a build hash, so match by prefix) */
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] {
+  background-color: var(--jd-bg-alt) !important;
+  color: var(--jd-text) !important;
+  border-color: var(--jd-border) !important;
+}
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] :is(
+  .search-container-component, [class*="SearchContainer_"], [class*="SearchItemsPanel_"],
+  [class*="SearchContentItem_content-subtitle"], [class*="SearchContentItem_content-body"],
+  [class*="InfiniteScroll_"]) {
+  color: var(--jd-text) !important;
+}
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] :is(
+  [class*="SearchItemsPanel_search-result-heading"], [class*="SearchContentItem_content-subtitle"]),
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="SearchItemsPanel_search-result-heading"] * {
+  color: var(--jd-text-dim) !important;
+}
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="SearchContentItem_content-title"],
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="SearchContentItem_content-title"] * {
+  color: var(--jd-text-hi) !important;
+}
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] :is(a, [class*="SearchContainer_more-options"], [class*="SearchContainer_search-help-link"], [class*="SearchContainer_close-search"]) {
+  color: var(--jd-blue) !important;
+}
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] .search-drawer-list-item:is(:hover, :focus, .active, .selected, [aria-selected="true"]),
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="SearchContentItem_search-content-item"]:is(:hover, :focus) {
+  background-color: var(--jd-hover) !important;
+}
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] [class*="SearchContainer_input-icon"],
+html.jd-on [class*="SearchDrawerPanel_drawer-panel-content"] .aui-iconfont-cross {
+  color: var(--jd-text-dim) !important;
+}
